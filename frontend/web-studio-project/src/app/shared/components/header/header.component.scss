@@ -1,10 +1,10 @@
 @use "../../../../assets/styles/_variables" as *;
 
 header{
+
   .container{
     display: flex;
     align-items: center;
-    justify-content: space-between;
     padding-bottom: 40px;
     padding-top: 40px;
     font-family: Montserrat, sans-serif;
@@ -14,30 +14,43 @@ header{
       cursor: pointer;
     }
 
-    nav ul{
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    nav {
       margin-left: 100px;
 
-      li{
-        margin-right: 30px;
+      ul {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         list-style: none;
-        a{
-          font-size: 16px;
-          color: $dark-blue-color;
-          cursor: pointer;
-          text-decoration: none;
+        padding: 0;
+        margin: 0;
 
-          &:hover{
-            color: $blue-color;
+        li {
+          margin-right: 30px;
+          list-style: none;
+
+          a {
+            font-size: 16px;
+            color: $dark-blue-color;
+            cursor: pointer;
+            text-decoration: none;
+
+            &:hover {
+              color: $blue-color;
+            }
+          }
+
+          &:last-child {
+            margin-right: 0;
           }
         }
-        &:last-child {
-          margin-right: 0;
-        }
+
       }
 
+    }
+      .header-phone{
+        font-size: 16px;
+        color: $blue-color;
     }
 
     .header-phone{
@@ -48,7 +61,11 @@ header{
     .logged{
       display: flex;
       align-items: center;
+      justify-content: flex-end;
       cursor: pointer;
+      width: 209px;
+      margin-left: 19px;
+      box-sizing: border-box;
 
       .logged-text{
         font-size: 16px;
