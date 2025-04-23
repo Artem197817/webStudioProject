@@ -1,0 +1,60 @@
+@use "../../../../assets/styles/_variables" as *;
+
+header{
+  .container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 40px;
+    padding-top: 40px;
+    font-family: Montserrat, sans-serif;
+    font-weight: 500;
+
+    .logo{
+      cursor: pointer;
+    }
+
+    nav ul{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-left: 100px;
+
+      li{
+        margin-right: 30px;
+        list-style: none;
+        a{
+          font-size: 16px;
+          color: $dark-blue-color;
+          cursor: pointer;
+          text-decoration: none;
+
+          &:hover{
+            color: $blue-color;
+          }
+        }
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+
+    }
+
+    .header-phone{
+      font-size: 16px;
+      color: $blue-color;
+      margin-left: 257px;
+    }
+    .logged{
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+
+      .logged-text{
+        font-size: 16px;
+        color: $dark-blue-color;
+        margin-right: 7px;
+      }
+    }
+  }
+}
