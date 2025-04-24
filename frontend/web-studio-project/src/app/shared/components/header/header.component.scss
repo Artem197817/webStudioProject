@@ -10,9 +10,6 @@ header{
     font-family: Montserrat, sans-serif;
     font-weight: 500;
 
-    .logo{
-      cursor: pointer;
-    }
 
     nav {
       margin-left: 100px;
@@ -57,6 +54,7 @@ header{
       font-size: 16px;
       color: $blue-color;
       margin-left: 257px;
+      text-decoration: none;
     }
     .logged{
       display: flex;

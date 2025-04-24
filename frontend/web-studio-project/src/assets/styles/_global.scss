@@ -1,3 +1,5 @@
+@use "variables" as *;
+
 
 html, body{
   margin: 0;
@@ -8,4 +10,29 @@ html, body{
 .container{
   max-width: 1240px;
   margin: 0 auto;
+}
+.logo {
+  cursor: pointer;
+}
+
+.button{
+  background: $blue-color;
+  text-align: center;
+  padding: 15px 30px;
+  cursor: pointer;
+  font-family: Montserrat, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  box-sizing: border-box;
+  color: #fff;
+border-radius: 5px;
+line-height: 130%;
+border: 0;
+
+&.button-small{
+  padding: 10px;
+  font-size: 12px;
+  font-weight: 500;
+
+}
 }

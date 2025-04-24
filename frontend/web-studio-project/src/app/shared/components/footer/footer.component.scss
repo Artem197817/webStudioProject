@@ -1,0 +1,143 @@
+@use "../../../../assets/styles/_variables"as *;
+
+.footer {
+    background: $light-blue-color;
+  .container {
+    padding-top: 40px;
+    padding-bottom: 54px;
+ 
+
+
+    .footer-top {
+      display: flex;
+      align-items: center;
+      margin-bottom: 40px;
+
+
+      nav {
+        margin-left: 40px;
+
+        ul {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          list-style: none;
+          padding: 0;
+          margin: 0;
+
+          li {
+            margin-right: 20px;
+            list-style: none;
+
+            a {
+              font-size: 16px;
+              color: $dark-blue-color;
+              cursor: pointer;
+              text-decoration: none;
+
+              &:hover {
+                color: $blue-color;
+              }
+            }
+
+            &:last-child {
+              margin-right: 0;
+            }
+          }
+
+        }
+
+      }
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: start;
+
+      .footer-bottom-block {
+        margin-right: 60px;
+        box-sizing: border-box;
+
+        &:last-child {
+          margin-right: 0;
+        }
+
+        &.address {
+          width: 253px;
+        }
+
+        &.phone {
+          width: 153px;
+        }
+
+        &.email {
+          width: 127px;
+        }
+
+        &.social {
+          width: 203px;
+        }
+
+        .footer-title {
+          font-family: Montserrat, sans-serif;
+          font-weight: 500;
+          font-size: 16px;
+          color: $blue-color
+        }
+
+        .footer-info {
+          font-size: 16px;
+          line-height: 130%;
+          color: $dark-blue-color;
+          margin-top: 10px;
+
+          &.info-email {
+            font-size: 14px;
+            a{
+                text-decoration: none;
+                color: $dark-blue-color;
+            }
+          }
+
+          &.info-social {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+
+            a {
+              margin-right: 20px;
+              cursor: pointer;
+
+              &:last-child {
+                margin-right: 0;
+              }
+            }
+          }
+
+          &.info-phone {
+            cursor: pointer;
+
+            a{
+                text-decoration: none;
+                color: $dark-blue-color;
+            }
+
+            .button {
+              width: 153px;
+              margin-top: 10px;
+            }
+          }
+        }
+
+
+
+      }
+
+    }
+    .footer-right{
+        margin-top: 6px;
+        font-size: 16px;
+        color: $blue-color;
+    }
+  }
+}
