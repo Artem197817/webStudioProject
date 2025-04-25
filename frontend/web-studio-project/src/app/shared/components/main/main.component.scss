@@ -1,4 +1,5 @@
-@use "../../../../assets/styles/_variables" as *;
+@use "../../../../assets/styles/_variables"as *;
+@use "../../../../assets/styles/_mixins"as *;
 
 .main {
   .container {
@@ -72,7 +73,8 @@
             margin-bottom: 50px;
 
           }
-          .button{
+
+          .button {
             width: 163px;
           }
         }
@@ -80,6 +82,7 @@
     }
   }
 }
+
 .swiper-pagination-bullet {
   width: 10px;
   height: 10px;
@@ -90,4 +93,153 @@
   opacity: 1;
 }
 
+.services {
+  .container {
+    padding-bottom: 60px;
+    margin-bottom: 60px;
 
+    .services-title {
+      @include title-Lora-38;
+      margin-bottom: 40px;
+    }
+
+    .services-block {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+
+      .service-card {
+        box-sizing: border-box;
+        width: 290px;
+
+        .service-card-image {
+          margin-bottom: 15px;
+        }
+
+        .service-card-title {
+          @include title-Montserrat-500-20;
+          margin-bottom: 10px;
+        }
+
+        .service-card-text {
+          font-size: 14px;
+          line-height: 130%;
+          margin-bottom: 15px;
+          color: $dark-blue-color;
+          height: 90px;
+        }
+
+        .service-card-action {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          .service-card-price {
+            font-family: Montserrat, sans-serif;
+            font-weight: 600;
+            font-size: 20px;
+            color: $blue-color;
+          }
+
+          .button {
+            width: 163px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.about {
+  .container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 60px;
+    padding-bottom: 60px;
+
+    .about-info {
+      margin-left: 68px;
+
+      .about-info-title {
+        margin-bottom: 20px;
+        @include title-Lora-38;
+      }
+
+      .about-info-text {
+        font-family: Montserrat, sans-serif;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 130%;
+        color: $dark-blue-color;
+        margin-bottom: 40px;
+        
+      }
+
+      .about-info-advantages-title {
+        @include title-Lora-26;
+        margin-bottom: 20px;
+      }
+
+      .about-info-advantages {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        .about-info-advantage {
+          margin-bottom: 20px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          box-sizing: border-box;
+          width: 316px;
+          height: 90px;
+
+          .about-info-advantage-icon {
+            position: relative;
+
+            .about-info-advantage-icon-circle {
+              background: #B9D5FD;
+              box-sizing: border-box;
+              width: 40px;
+              height: 40px;
+              border-radius: 50%;
+            }
+
+            .about-info-advantage-icon-number {
+              font-family: Lora, sans-serif;
+              font-weight: 500;
+              font-size: 50px;
+              position: absolute;
+              top: -19px;
+              left: 6px;
+              color: $blue-color;
+
+              &.one{
+                left: 9px;
+              }
+            }
+
+          }
+
+          .about-info-advantage-text {
+            font-size: 14px;
+            line-height: 130%;
+            color: $dark-blue-color;
+            width: 256px;
+
+            span{
+              font-family: Montserrat;
+              font-weight: 500;
+              font-size: 14px;
+              line-height: 130%;
+               
+            }
+
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+@use "variables"as *;
+
+@mixin title-Lora-38 {
+  font-family: 'Lora', serif;
+  font-size: 38px;
+  font-style: normal;
+  font-weight: 400;
+  color: $blue-color;
+}
+
+@mixin title-Lora-26 {
+  font-family: 'Lora', serif;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 400;
+  color: $blue-color;
+}
+
+@mixin title-Montserrat-500-20 {
+  font-family: Montserrat, sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 130%;
+  color: $blue-color;
+
+}
