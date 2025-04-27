@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {RouterLink} from '@angular/router';
+import {SharedUtilInfoService} from '../../utils/shared-util-info.service';
 
 @Component({
   selector: 'app-header',
@@ -11,12 +12,6 @@ import {RouterLink} from '@angular/router';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-  protected headerMenuList = [
-    {title: 'Услуги', link: '/', fragment: 'services'},
-    {title: 'О нас', link: '/about', fragment: 'about'},
-    {title: 'Статьи', link: '/article', fragment: ''},
-    {title: 'Отзывы', link: '/', fragment: 'reviews'},
-    {title: 'Контакты', link: '/', fragment: 'contact'},
-  ]
+  protected headerMenuList = SharedUtilInfoService.menuItems;
   protected isLogged: boolean = false;
 }

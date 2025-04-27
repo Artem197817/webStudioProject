@@ -1,12 +1,14 @@
 import { Routes } from '@angular/router';
 import {LayoutComponent} from './shared/components/layout/layout.component';
 import {MainComponent} from './shared/components/main/main.component';
+import {ArticleComponent} from './shared/components/article/article.component';
 
 export const routes: Routes = [
   {path: '',
     component: LayoutComponent,
     children: [
       {path: '', component: MainComponent},
+      {path: 'article/:url', component: ArticleComponent},
     ]}
 ];
 
