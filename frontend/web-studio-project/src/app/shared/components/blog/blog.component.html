@@ -1,11 +1,38 @@
 <section class="blog">
   <div class="container">
-    <div class="blog-title"> </div>
-      <div class="blog-options">
-        <div class="blog-option"></div>
-        <div class="blog-search"></div>
+    <div class="blog-title"></div>
+    <div class="blog-options">
+      <div class="blog-option"></div>
+      <div class="blog-search" (click)="changingIsSorting()">
+        <span>Фильтр</span>
+        <svg width="16" height="8" viewBox="0 0 16 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M8.00002 7.50003C7.41668 7.50003 6.83335 7.27503 6.39168 6.83337L0.95835 1.40003C0.716683 1.15837 0.716683 0.758366 0.95835 0.516699C1.20002 0.275033 1.60002 0.275033 1.84168 0.516699L7.27502 5.95003C7.67502 6.35003 8.32502 6.35003 8.72502 5.95003L14.1583 0.516699C14.4 0.275033 14.8 0.275033 15.0417 0.516699C15.2833 0.758366 15.2833 1.15837 15.0417 1.40003L9.60835 6.83337C9.16668 7.27503 8.58335 7.50003 8.00002 7.50003Z"
+            fill="#071739"/>
+        </svg>
+        @if (isSorting) {
+          <div class="blog-sort-change">
+            @for (category of categories; track category) {
+              <div class="blog-sort-option" (click)="sort(category.url)"
+              [class.active]="category.isChange">
+                <span>{{ category.name }}</span>
+                @if (category.isChange) {
+                  <svg width="7" height="3" viewBox="0 0 7 3" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.44 2.24H6.728V0.752H0.44V2.24Z" fill="#071739"/>
+                  </svg>
+                }
+                @if (!category.isChange) {
+                  <svg width="12" height="11" viewBox="0 0 12 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.12 4.904H6.656V0.511999H5.144V4.904H0.68V6.32H5.144V10.688H6.656V6.32H11.12V4.904Z" fill="#BEBEBE"/>
+                  </svg>
+                }
+              </div>
+            }
+          </div>
+        }
       </div>
+    </div>
     <div class="blog-article"></div>
 
-     </div>
+  </div>
 </section>
