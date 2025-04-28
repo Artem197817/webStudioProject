@@ -1,0 +1,68 @@
+@use "../../../assets/styles/_mixins"as *;
+@use "../../../assets/styles/_variables"as *;
+
+.signup {
+  .container {
+    padding-top: 106px;
+    padding-bottom: 92px;
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+
+    .auth-form {
+      .auth-title {
+        @include title-Lora-38;
+        font-size: 36px;
+        margin-bottom: 40px;
+        line-height: 120%;
+      }
+
+      .auth-inputs {
+        .auth-input {
+          margin-bottom: 5px;
+
+          input {
+            width: 422px;
+          }
+        }
+
+        .auth-checkbox {
+          margin-top: 5px;
+          margin-bottom: 40px;
+          width: 422px;
+
+          label {
+            font-size: 14px;
+            color: $dark-blue-color;
+            a{
+                text-decoration: none;
+                color: $blue-color;
+                text-decoration: underline;
+                cursor: pointer;
+            }
+
+          }
+        }
+    }
+        .auth-button{
+            margin-bottom: 10px;
+            button{
+                width: 422px;
+            }
+        }
+        .auth-link{
+            font-size: 14px;
+            color: $dark-blue-color;
+
+            a{
+                text-decoration: none;
+                color: $blue-color;
+                cursor: pointer;
+            }
+        }
+      
+
+
+    }
+  }
+}

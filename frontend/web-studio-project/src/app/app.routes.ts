@@ -2,6 +2,8 @@ import { Routes } from '@angular/router';
 import {LayoutComponent} from './shared/components/layout/layout.component';
 import {MainComponent} from './shared/components/main/main.component';
 import {ArticleComponent} from './shared/components/article/article.component';
+import { LoginComponent } from './user/login/login.component';
+import { SignupComponent } from './user/signup/signup.component';
 
 export const routes: Routes = [
   {path: '',
@@ -9,6 +11,8 @@ export const routes: Routes = [
     children: [
       {path: '', component: MainComponent},
       {path: 'article/:url', component: ArticleComponent},
+      {path: 'login', component: LoginComponent},
+      {path: 'signup', component: SignupComponent},
     ]}
 ];
 

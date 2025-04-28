@@ -37,3 +37,30 @@ border: 0;
 }
 }
 
+.input{
+  font-family: Montserrat,sans-serif;
+  font-weight: 400;
+  border-radius: 3px;
+  padding: 17px 20px;
+  border: 2px solid $blue-color;
+  font-size: 14px;
+  color: $dark-blue-color;
+  box-sizing: border-box;
+
+  &::placeholder{
+    color: #A8ABA7;
+  }
+}
+.small-input{
+  border: 1px solid $blue-color;
+  border-radius: 5px;
+  text-align: center;
+  padding: 2px;
+  box-sizing: border-box;
+  font-family: Montserrat, sans-serif;
+  font-weight: 600;
+  font-size: 22px;
+  color: $dark-blue-color;
+  width: 40px;
+  height: 28px;
+}
