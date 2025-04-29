@@ -36,7 +36,7 @@ export class SharedUtilInfoService {
   public static menuItems = [
     {title: 'Услуги', link: '/', fragment: 'services'},
     {title: 'О нас', link: '/about', fragment: 'about'},
-    {title: 'Статьи', link: '/article', fragment: ''},
+    {title: 'Статьи', link: '/blog', fragment: ''},
     {title: 'Отзывы', link: '/', fragment: 'reviews'},
     {title: 'Контакты', link: '/', fragment: 'contact'},
   ]

@@ -36,19 +36,6 @@ export class SignupComponent {
     });
   }
 
-  private passwordMatchValidator(formGroup: FormGroup): ValidationErrors | null {
-    const password = formGroup.get('password')?.value;
-    const passwordRepeat = formGroup.get('passwordRepeat')?.value;
-
-    if (password !== passwordRepeat) {
-      formGroup.get('passwordRepeat')?.setErrors({passwordMismatch: true});
-      return {passwordMismatch: true};
-    } else {
-      formGroup.get('passwordRepeat')?.setErrors(null);
-      return null;
-    }
-  }
-
   protected signup(): void {
     if (this.signupForm.valid && this.signupForm.value.email && this.signupForm.value.password && this.signupForm.value.passwordRepeat) {
       this.authService.signup(this.signupForm.value.email, this.signupForm.value.password, this.signupForm.value.passwordRepeat)

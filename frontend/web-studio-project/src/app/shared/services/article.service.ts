@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {ArticlesType, ArticleType} from '../../types/article.types';
 import {Observable} from 'rxjs';
 import {environment} from '../../../environments/environment';
+import {Params} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class ArticleService {
     return this.http.get<ArticleType[]>(environment.api + 'articles/top')
   }
 
-  getArticles(): Observable<ArticlesType> {
+  getArticles(params: Params): Observable<ArticlesType> {
     return this.http.get<ArticlesType>(environment.api + 'articles')
 
   }

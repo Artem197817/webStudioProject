@@ -5,6 +5,7 @@ import {provideAnimations} from '@angular/platform-browser/animations';
 import {ArticleType} from '../../../types/article.types';
 import {ArticleService} from '../../services/article.service';
 import {ArticleCardComponent} from '../article-card/article-card.component';
+import {RouterLink} from '@angular/router';
 
 
 @Component({
@@ -12,6 +13,7 @@ import {ArticleCardComponent} from '../article-card/article-card.component';
   imports: [
     CarouselModule,
     ArticleCardComponent,
+    RouterLink,
   ],
   standalone: true,
   templateUrl: './main.component.html',
