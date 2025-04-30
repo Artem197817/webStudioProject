@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, Validators} from '@angular/forms';
 import {Router, RouterLink} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
@@ -19,10 +19,11 @@ import { CommonModule } from '@angular/common';
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss'
 })
-export class SignupComponent {
+export class SignupComponent implements OnInit{
 
   protected signupForm: FormGroup;
 
+  
   constructor(private fb: FormBuilder,
               private router: Router,
               private authService: AuthService,
@@ -34,6 +35,10 @@ export class SignupComponent {
       password: ['', [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).+$')]],
       agree: [false, Validators.requiredTrue],
     });
+  }
+
+  ngOnInit(): void {
+    this.signupForm.get('agree')?.setValue(this.authService.acceptAgreementSignal());
   }
 
   private passwordMatchValidator(formGroup: FormGroup): ValidationErrors | null {
@@ -87,4 +92,10 @@ export class SignupComponent {
           })
     }
   }
+readDocument(signal: boolean){
+  this.authService.documentSignal.set(signal);
+  this.router.navigate(['/user-agreement']);
+}
+
+
 }

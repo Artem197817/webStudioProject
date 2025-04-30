@@ -1,5 +1,6 @@
 <section [formGroup]="signupForm" class="signup" passwordRepeat>
     <div class="container">
+ 
       <div class="auth-form">
         <div class="auth-title">
           Регистрация на сайте
@@ -28,11 +29,11 @@
             <input type="checkbox" id="agree" formControlName="agree">
             <label for="agree">
               Я принимаю
-              <a>
+              <a (click)="readDocument(true)">
                 условия пользовательского соглашения
               </a>
               и даю
-              <a>
+              <a (click)="readDocument(false)">
                 согласие на обработку персональных данных.
               </a>
             </label>

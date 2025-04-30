@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable, signal} from '@angular/core';
 import {Subject} from 'rxjs';
 
 @Injectable({
@@ -7,6 +7,7 @@ import {Subject} from 'rxjs';
 export class LoaderService {
 
   public isShowed$ = new Subject<boolean>()
+  public isPopupActive = signal(false);
 
   constructor() {
   }

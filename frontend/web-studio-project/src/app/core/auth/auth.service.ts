@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable, signal} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, Subject, throwError} from 'rxjs';
 
@@ -14,6 +14,8 @@ export class AuthService {
   public accessTokenKey: string = 'accessToken';
   public refreshTokenKey: string = 'refreshToken';
   public userIdKey: string = 'userId';
+  public documentSignal = signal<boolean>(false);
+  public acceptAgreementSignal = signal<boolean>(false);
 
   public isLogged$: Subject<boolean> = new Subject<boolean>();
   private isLogged: boolean = false;

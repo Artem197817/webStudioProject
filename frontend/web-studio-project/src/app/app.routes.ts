@@ -4,6 +4,7 @@ import {MainComponent} from './shared/components/main/main.component';
 import {ArticleComponent} from './shared/components/article/article.component';
 import { LoginComponent } from './user/login/login.component';
 import { SignupComponent } from './user/signup/signup.component';
+import { UserAgreementComponent } from './user/user-agreement/user-agreement.component';
 
 export const routes: Routes = [
   {path: '',
@@ -13,6 +14,7 @@ export const routes: Routes = [
       {path: 'article/:url', component: ArticleComponent},
       {path: 'login', component: LoginComponent},
       {path: 'signup', component: SignupComponent},
+      {path: 'user-agreement', component: UserAgreementComponent},
     ]}
 ];
 
