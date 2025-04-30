@@ -92,6 +92,8 @@ export class SignupComponent implements OnInit{
           })
     }
   }
+
+
 readDocument(signal: boolean){
   this.authService.documentSignal.set(signal);
   this.router.navigate(['/user-agreement']);

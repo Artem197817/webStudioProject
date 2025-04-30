@@ -13,7 +13,7 @@
         @if (isSorting) {
           <div class="blog-sort-change">
             @for (category of categories; track category) {
-              <div class="blog-sort-option" (click)="sort(category.url)"
+              <div class="blog-sort-option" (click)="filer(category.url)"
               [class.active]="category.isChange">
                 <span>{{ category.name }}</span>
                 @if (category.isChange) {

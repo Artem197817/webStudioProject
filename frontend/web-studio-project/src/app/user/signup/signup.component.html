@@ -1,4 +1,4 @@
-<section [formGroup]="signupForm" class="signup" passwordRepeat>
+<section [formGroup]="signupForm" class="signup">
     <div class="container">
  
       <div class="auth-form">
@@ -24,7 +24,7 @@
                     signupForm.get('password')?.touched)? 'red' : ''}"
                    placeholder="Пароль" formControlName="password">
           </div>
-         
+
           <div class="auth-checkbox">
             <input type="checkbox" id="agree" formControlName="agree">
             <label for="agree">
