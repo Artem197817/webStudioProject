@@ -9,6 +9,7 @@
   height: 571px;
   box-sizing: border-box;
 
+
   .article-card-info{
     position: relative;
 
@@ -48,5 +49,6 @@
     color: $blue-color;
     text-decoration: underline;
     text-decoration-style: solid;
+    cursor: pointer;
   }
 }

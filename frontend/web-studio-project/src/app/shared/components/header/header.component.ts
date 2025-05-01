@@ -26,7 +26,7 @@ constructor(private authService: AuthService,
 
 
   loginNavigate(): void {
-    if(this.isLogged){
+    if(!this.isLogged){
       this.router.navigate(['/login']);
     }
   }

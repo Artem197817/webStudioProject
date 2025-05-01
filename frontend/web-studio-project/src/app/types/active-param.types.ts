@@ -1,4 +1,4 @@
-export interface ActiveParamTypes {
+export type ActiveParamTypes = {
   page?: number;
   categories?: string[];
 }

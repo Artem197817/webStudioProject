@@ -3,15 +3,16 @@ import {ArticleService} from '../../services/article.service';
 import {ArticlesType, ArticleType} from '../../../types/article.types';
 import {CategoryType} from '../../../types/category.types';
 import {CategoryService} from '../../services/category.service';
-import {NgClass} from '@angular/common';
-import {ActivatedRoute, Params} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 import {ActiveParamTypes} from '../../../types/active-param.types';
-import {debounceTime} from 'rxjs';
+import {Subject, takeUntil} from 'rxjs';
+import {ArticleCardComponent} from '../article-card/article-card.component';
 
 @Component({
   selector: 'app-blog',
   imports: [
-    NgClass
+    ArticleCardComponent
+
   ],
   standalone: true,
   templateUrl: './blog.component.html',
@@ -24,67 +25,138 @@ export class BlogComponent implements OnInit {
   page: number = 1;
   pages: number[] = [];
   protected categories: CategoryType[] = [];
-  private activeParams: ActiveParamTypes = {categories: []}
-
+  protected activeParams: ActiveParamTypes = {categories: []};
+  protected appliedFilter: {name: string, url: string}[] = [];
   protected isSorting: boolean = false;
+  private destroy$ = new Subject<void>();
+
 
   constructor(private articleService: ArticleService,
               private categoryService: CategoryService,
               private activatedRoute: ActivatedRoute,
+              private router: Router,
   ) {
   }
 
   ngOnInit(): void {
     this.activatedRoute.queryParams
-      .pipe(
-        debounceTime(800)
-      )
+      .pipe(takeUntil(this.destroy$))
       .subscribe(params => {
         this.activeParams = this.processParams(params);
-        this.activeParams.page = this.page;
 
         this.articleService.getArticles(this.activeParams)
           .subscribe((data: ArticlesType) => {
             this.articles = data.items;
             this.count = data.count;
-            for (let index = 0; index < data.pages; index++) {
-              this.pages.push(index + 1)
+            this.pages = Array.from({ length: data.pages }, (_, i) => i + 1);
+          });
+
+        if (this.categories.length === 0) {
+          this.categoryService.getCategories().subscribe({
+            next: (data) => {
+              this.categories = data;
+              this.categories.forEach(category => {
+                category.isChange = this.activeParams.categories?.includes(category.url) ?? false;
+                this.appliedFilter = [];
+                this.categories.forEach(category => {
+                  if (category.isChange) {
+                    this.appliedFilter.push({name: category.name, url: category.url});
+                  }
+                })
+              });
+            },
+            error: (err) => {
+              console.error('Failed to load categories', err);
             }
           });
 
-        this.categoryService.getCategories().subscribe({
-          next: (data) => {
-            this.categories = data;
-            this.categories.forEach(category => {
-
-              const findCategory= this.activeParams.categories?.includes(category.url);
-              category.isChange = !!findCategory;
-            });
-
-
-          },
-          error: (err) => {
-            console.error('Failed to load categories', err);
-          }
-        });
+       } else {
+          this.appliedFilter = [];
+          this.categories.forEach(category => {
+            if (category.isChange) {
+              this.appliedFilter.push({name: category.name, url: category.url});
+            }
+          })
+        }
       });
-
   }
 
-  changingIsSorting() {
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  changingIsSorting(event?: MouseEvent) {
+    event?.stopPropagation();
     this.isSorting = !this.isSorting;
   }
 
-  filer(url: string) {
+  filer(category: CategoryType) {
+    category.isChange = !category.isChange;
+
+    let newCategories = this.activeParams.categories ? [...this.activeParams.categories] : [];
+
+    if (category.isChange) {
+      if (!newCategories.includes(category.url)) {
+        newCategories = [...newCategories, category.url];
+      }
+    } else {
+      newCategories = newCategories.filter(url => url !== category.url);
+    }
+
+    this.activeParams = {
+      ...this.activeParams,
+      categories: newCategories,
+      page: 1
+    };
 
 
+    this.router.navigate(['/blog'], {
+      queryParams: this.activeParams,
+      replaceUrl: true
+    });
   }
 
   processParams(params: Params): ActiveParamTypes {
-    const activeParams: ActiveParamTypes = {categories: []};
-    if (params.hasOwnProperty('types')) {
-      activeParams.categories = Array.isArray(params['categories']) ? params['categories'] : [params['categories']]
+    const activeParams: ActiveParamTypes = { categories: [] };
+    if (params.hasOwnProperty('categories')) {
+      activeParams.categories = Array.isArray(params['categories']) ? params['categories'] : [params['categories']];
+    }
+    if (params.hasOwnProperty('page')) {
+      activeParams.page = +params['page'];
     }
     return activeParams;
+  }
+  openPage(page: number) {
+    this.activeParams.page = page;
+    this.router.navigate(['/blog'], {
+      queryParams: this.activeParams,
+      replaceUrl: true
+    });
+  }
+
+  openNextPage() {
+    if (this.activeParams.page && this.activeParams.page < this.pages.length) {
+      this.activeParams.page++;
+      this.router.navigate(['/blog'], {
+        queryParams: this.activeParams,  queryParamsHandling: 'merge'
+      });
+    }
+  }
+
+  openPrevPage() {
+    if (this.activeParams.page && this.activeParams.page > 1) {
+      this.activeParams.page--;
+      this.router.navigate(['/blog'], {
+        queryParams: this.activeParams
+      });
+    }
+  }
+
+  deleteFilterOption(url: string) {
+    const findCategory = this.categories.find(item => item.url === url);
+    if (findCategory) {
+      this.filer(findCategory);
+    }
   }
 }
