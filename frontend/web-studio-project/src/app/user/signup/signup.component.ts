@@ -23,7 +23,7 @@ export class SignupComponent implements OnInit{
 
   protected signupForm: FormGroup;
 
-  
+
   constructor(private fb: FormBuilder,
               private router: Router,
               private authService: AuthService,
@@ -55,8 +55,8 @@ export class SignupComponent implements OnInit{
   }
 
   protected signup(): void {
-    if (this.signupForm.valid && this.signupForm.value.email && this.signupForm.value.password && this.signupForm.value.passwordRepeat) {
-      this.authService.signup(this.signupForm.value.email, this.signupForm.value.password, this.signupForm.value.passwordRepeat)
+    if (this.signupForm.valid && this.signupForm.value.name && this.signupForm.value.email && this.signupForm.value.password) {
+      this.authService.signup(this.signupForm.value.name, this.signupForm.value.email, this.signupForm.value.password)
         .subscribe(
           {
             next: (data: LoginResponseType | DefaultResponseType) => {

@@ -1,28 +1,30 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {ArticleType} from '../../../types/article.types';
-import {ArticleService} from '../../services/article.service';
 import {environment} from '../../../../environments/environment';
-import {RouterLink} from '@angular/router';
+import {Router} from '@angular/router';
 import {TruncateTextPipe} from '../../utils/truncate-text.pipe';
+
 
 @Component({
   selector: 'article-card',
   imports: [
-    RouterLink,
     TruncateTextPipe
   ],
   standalone: true,
   templateUrl: './article-card.component.html',
   styleUrl: './article-card.component.scss'
 })
-export class ArticleCardComponent implements OnInit{
+export class ArticleCardComponent{
 
   @Input() article!: ArticleType;
 
   protected serverStaticPath: string = environment.serverStaticPath;
-  ngOnInit(): void {
+  constructor(private router: Router) {
   }
 
 
 
+  navigate(url: string) {
+    this.router.navigate(['article/' + url])
+  }
 }

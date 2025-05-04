@@ -1,0 +1,113 @@
+@use "../../../../assets/styles/_variables"as *;
+@use "../../../../assets/styles/_mixins"as *;
+
+.article {
+  .container {
+    padding-top: 80px;
+    padding-bottom: 120px;
+
+    .article-title-block {
+      .article-title-links {
+        display: flex;
+        align-items: center;
+        margin-bottom: 60px;
+
+        .article-title-link-blog {
+          font-size: 16px;
+          color: $light-blue-color;
+          text-decoration: none;
+          cursor: pointer;
+        }
+
+        .article-title-link-name {
+          margin-left: 8px;
+          font-family: Montserrat, sans-serif;
+          font-weight: 500;
+          font-size: 16px;
+          color: $blue-color;
+        }
+      }
+
+      .article-title-block-info {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 60px;
+
+        .article-title-info-title {
+          @include title-Lora-38;
+          width: 607px;
+          margin-bottom: 40px;
+        }
+
+        .article-title-info-description {
+          font-size: 20px;
+          line-height: 130%;
+          color: $blue-color;
+          width: 607px;
+        }
+      }
+
+      .article-title-image {
+        box-sizing: border-box;
+        width: 527px;
+        height: 320px;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+    }
+
+    .article-block {
+      display: flex;
+      justify-content: space-between;
+
+      .article-text-block {
+        color: $dark-blue-color;
+        font-size: 14px;
+        width: 818px;
+
+        .article-text {
+          margin-bottom: 60px;
+        }
+        .article-social{
+          display: flex;
+          align-items: center;
+          span{
+            font-family: Montserrat, sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            margin-right: 5px;
+            color: $blue-color;
+          }
+          .article-social-block {
+            display: flex;
+            align-items: center;
+
+            a {
+              margin-left: 15px;
+            }
+          }
+        }
+
+      }
+      .article-related-block{
+        margin-top: 60px;
+        .article-related-title{
+          @include title-Lora-26;
+          color: $blue-color;
+          margin-bottom: 20px;
+        }
+        article-card{
+          margin-bottom: 40px;
+        }
+        .article-card{
+          margin-bottom: 40px;
+        }
+      }
+    }
+  }
+}
+.article-card{
+  margin-bottom: 40px;
+}

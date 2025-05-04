@@ -36,11 +36,11 @@ export class AuthService {
     })
   }
 
-  public signup(email: string, password: string, passwordRepeat: string): Observable<DefaultResponseType | LoginResponseType> {
+  public signup(name: string, email: string, password: string): Observable<DefaultResponseType | LoginResponseType> {
     return this.http.post<DefaultResponseType | LoginResponseType>(environment.api + 'signup', {
+      name,
       email,
       password,
-      passwordRepeat,
     })
   }
 

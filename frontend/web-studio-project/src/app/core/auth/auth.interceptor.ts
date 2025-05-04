@@ -26,12 +26,12 @@ export class AuthInterceptor implements HttpInterceptor {
     const tokens = this.authService.getTokens();
     if (tokens && tokens.accessToken) {
       const authReq = request.clone({
-        headers: request.headers.set('x-access-token', tokens.accessToken)
+        headers: request.headers.set('x-auth', tokens.accessToken)
       })
       return next.handle(authReq)
         .pipe(
           catchError((error) => {
-            if (error.status === 401 && authReq.url.includes('/login') && authReq.url.includes('/refresh')) {
+            if (error.status === 401 && !authReq.url.includes('/login') && !authReq.url.includes('/refresh')) {
               return this.handle401Request(authReq, next)
             }
             return throwError(() => error)
@@ -52,7 +52,7 @@ export class AuthInterceptor implements HttpInterceptor {
             error = (result as DefaultResponseType).message;
           }
           const refreshResult = result as LoginResponseType;
-          if (!refreshResult.accessToken || refreshResult.refreshToken || refreshResult.userId) {
+          if (!refreshResult.accessToken || !refreshResult.refreshToken || !refreshResult.userId) {
             error = 'Ошибка авторизации'
           }
           if (error) {
@@ -61,7 +61,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
           this.authService.setTokens(refreshResult.accessToken, refreshResult.refreshToken);
           const authReq = request.clone({
-            headers: request.headers.set('x-access-token', refreshResult.accessToken)
+            headers: request.headers.set('x-auth', refreshResult.accessToken)
           });
           return next.handle(authReq);
         }),

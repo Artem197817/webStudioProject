@@ -230,7 +230,7 @@
             width: 256px;
 
             span{
-              font-family: Montserrat;
+              font-family: Montserrat, sans-serif;
               font-weight: 500;
               font-size: 14px;
               line-height: 130%;
@@ -262,7 +262,7 @@
       display: flex;
       align-items: center;
       justify-content: end;
-      margin-top: 40px;
+
       a{
         text-decoration: none;
         color: $blue-color;

@@ -1,0 +1,119 @@
+@use "../../../../assets/styles/_variables"as *;
+@use "../../../../assets/styles/_mixins"as *;
+
+
+.comment{
+  margin-top: 60px;
+
+  .comment-title{
+    @include title-Lora-38;
+    margin-bottom: 20px;
+  }
+  .comment-no-comment{
+    font-size: 14px;
+    color: $dark-blue-color;
+    margin-bottom: 40px;
+  }
+  .comment-make{
+    margin-top: 20px;
+    margin-bottom: 60px;
+    .comment-new-comment-text{
+      margin-bottom: 20px;
+      padding: 20px;
+      color: $dark-blue-color;
+      width: 818px;
+      box-sizing: border-box;
+      height: 248px;
+      border: 1.5px solid $blue-color;
+      border-radius: 3px;
+      font-size: 14px;
+
+      &::placeholder{
+        font-size: 14px;
+        color: #A8ABA7;
+      }
+    }
+    .button{
+      width: 422px;
+    }
+  }
+  .comment-logged{
+    span{
+      font-size: 14px;
+      color: $dark-blue-color;
+    }
+    a{
+      font-size: 14px;
+      color: $blue-color;
+    }
+  }
+  .comment-block{
+    margin-bottom: 40px;
+    .comment-info-block{
+      display: flex;
+
+      .comment-image{
+        margin-right: 26px;
+      }
+      .comment-info{
+        margin-bottom: 15px;
+        .comment-user-name{
+          font-family: Montserrat, sans-serif;
+          font-weight: 600;
+          font-size: 18px;
+          line-height: 130%;
+          color: $blue-color;
+          margin-bottom: 10px;
+        }
+        .comment-date{
+          font-family: Montserrat, sans-serif;
+          font-weight: 600;
+          font-size: 14px;
+          line-height: 130%;
+          color: #BEBEBE;
+        }
+      }
+    }
+    .comment-text{
+      font-size: 14px;
+      line-height: 140%;
+      color: $dark-blue-color;
+      margin-bottom: 40px;
+    }
+    .comment-action{
+      display: flex;
+      align-items: center;
+
+      .comment-like-block{
+        margin-right: 15px;
+        span{
+          font-family: Montserrat, sans-serif;
+          font-weight: 600;
+          font-size: 14px;
+          line-height: 140%;
+          display: flex;
+          align-items: center;
+          color: $dark-blue-color;
+          margin-right: 3px;
+        }
+      }
+      .comment-dislike-block{
+        margin-right: 15px;
+        span{
+          font-family: Montserrat, sans-serif;
+          font-weight: 600;
+          font-size: 14px;
+          line-height: 140%;
+          display: flex;
+          align-items: center;
+          color: $dark-blue-color;
+          margin-right: 3px;
+        }
+      }
+
+    }
+  }
+  .comment-more{
+    margin-top: 20px;
+  }
+}

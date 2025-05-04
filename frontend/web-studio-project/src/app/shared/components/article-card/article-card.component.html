@@ -6,6 +6,6 @@
   <div class="article-card-title">{{article.title | truncateText:55}}</div>
   <div class="article-card-text">{{article.description | truncateText:250}}</div>
   </div>
-  <a [routerLink]="'article/' + article.url"  class="article-card-link">Читать дальше</a>
+  <a (click)="navigate(article.url)"  class="article-card-link">Читать дальше</a>
 </div>
 }
