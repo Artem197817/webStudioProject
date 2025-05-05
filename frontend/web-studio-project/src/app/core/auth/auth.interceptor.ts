@@ -20,9 +20,10 @@ export class AuthInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-
+    console.log('AuthInterceptor intercept called for URL:', request.url);
     this.loaderService.show();
     const tokens = this.authService.getTokens();
+    console.log(tokens)
     if (tokens && tokens.accessToken) {
       const authReq = request.clone({
         headers: request.headers.set('x-auth', tokens.accessToken)

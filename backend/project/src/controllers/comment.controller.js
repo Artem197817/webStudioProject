@@ -8,24 +8,48 @@ const UserCommentActionNormalizer = require("../normalizers/user-comment-action.
 const ArticleModel = require("../models/article.model");
 
 class CommentController {
+
     static async addComment(req, res) {
-        const {error} = ValidationUtils.addCommentValidation(req.body);
+        const { error } = ValidationUtils.addCommentValidation(req.body);
 
         if (error) {
             console.log(error.details);
-            return res.status(400).json({error: true, message: error.details[0].message});
+            return res.status(400).json({ error: true, message: error.details[0].message });
         }
 
-        let comment = new CommentModel();
-        comment.text = req.body.text;
-        comment.date = new Date();
-        comment.user = new mongoose.Types.ObjectId(req.user.id);
-        comment.article = new mongoose.Types.ObjectId(req.body.article);
+        const comment = new CommentModel({
+            text: req.body.text,
+            date: new Date(),
+            user: req.user.id,       // или new Types.ObjectId(req.user.id)
+            article: req.body.article // или new Types.ObjectId(req.body.article)
+        });
 
-        const result = await comment.save();
-
-        res.status(200).json({error: false, message: "Комментарий добавлен!"});
+        try {
+            await comment.save();
+            return res.status(200).json({ error: false, message: "Комментарий добавлен!" });
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({ error: true, message: "Ошибка сервера" });
+        }
     }
+    // static async addComment(req, res) {
+    //     const {error} = ValidationUtils.addCommentValidation(req.body);
+    //
+    //     if (error) {
+    //         console.log(error.details);
+    //         return res.status(400).json({error: true, message: error.details[0].message});
+    //     }
+    //
+    //     let comment = new CommentModel();
+    //     comment.text = req.body.text;
+    //     comment.date = new Date();
+    //     comment.user = new mongoose.Types.ObjectId(req.user.id);
+    //     comment.article = new mongoose.Types.ObjectId(req.body.article);
+    //
+    //     const result = await comment.save();
+    //
+    //     res.status(200).json({error: false, message: "Комментарий добавлен!"});
+    // }
 
     static async getComments(req, res) {
         const {article} = req.query;

@@ -1,20 +1,27 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import {ApplicationConfig, provideZoneChangeDetection} from '@angular/core';
 import {provideRouter, withRouterConfig} from '@angular/router';
 import { routes } from './app.routes';
 import {provideAnimations} from '@angular/platform-browser/animations';
-import {HTTP_INTERCEPTORS, provideHttpClient} from '@angular/common/http';
-import {AuthInterceptor} from './core/auth/auth.interceptor';
+import {provideHttpClient, HTTP_INTERCEPTORS, withInterceptors} from '@angular/common/http';
+import {authInterceptor} from './core/auth/auth-fn.intercepptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes, withRouterConfig({ onSameUrlNavigation: 'reload' })),
+    provideRouter(
+      routes,
+      withRouterConfig({
+        onSameUrlNavigation: 'reload',
+      })
+    ),
     provideAnimations(),
-    provideHttpClient(),
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true
-    }
+    provideHttpClient(withInterceptors([authInterceptor])),
+
 ]
 };
+/**     importProvidersFrom(
+ RouterModule.forRoot(routes, {
+ onSameUrlNavigation: 'reload',
+ anchorScrolling: 'enabled',
+ scrollPositionRestoration: 'enabled'
+ })*/

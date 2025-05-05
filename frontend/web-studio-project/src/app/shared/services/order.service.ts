@@ -13,14 +13,13 @@ public isThanksPopupSignal = signal<boolean>(false);
 
 
 constructor() {
-  console.log(this.isPopupActiveSignal )
  }
 
  openPopup(type: 'consultation' | 'order') {
   this.isPopupActiveSignal.set(true);
   this.consultationPopupSignal.set(type === 'consultation');
   this.orderPopupSignal.set(type === 'order');
-  
+
 }
 
 closePopup() {
