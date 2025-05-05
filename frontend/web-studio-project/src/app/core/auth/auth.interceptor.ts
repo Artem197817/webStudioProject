@@ -2,14 +2,13 @@ import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/com
 import {Injectable} from '@angular/core';
 import {Observable, catchError, throwError, switchMap, finalize} from 'rxjs';
 import {AuthService} from './auth.service';
-
 import {LoginResponseType} from '../../types/login-response.type';
 import {Router} from '@angular/router';
 import { DefaultResponseType } from '../../types/default-response.types';
 import {LoaderService} from '../../shared/services/loader.service';
 
 
-@Injectable()
+@Injectable({ providedIn: 'root'})
 export class AuthInterceptor implements HttpInterceptor {
 
   constructor(private authService: AuthService,

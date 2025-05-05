@@ -1,92 +1,174 @@
-@if(isPopupActive){
-<div class="popup-container">
+@if(orderService.isPopupActiveSignal()){
+<div class="popup">
+    @if(orderService.orderPopupSignal()){
 
-  @if(isChangePopup){
-
-  <div class="popup-order" [formGroup]="orderForm">
-    <div class="close-popup" >
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <line x1="1.93562" y1="2.6499" x2="13.9564" y2="14.6707" stroke="#BEBEBE" stroke-linecap="round"/>
-          <line x1="13.9236" y1="2.62971" x2="1.90277" y2="14.6505" stroke="#BEBEBE" stroke-linecap="round"/>
-          </svg>            
-      </div>
-    <div class="popup-title" >Закажите бесплатную консультацию!</div>
-    <div class="popup-input">
-      <input
-        type="text"
-        class="input"
-        [ngStyle]="{
-          borderColor:
-          orderForm.get('name')?.invalid &&
-            (orderForm.get('name')?.dirty ||
-            orderForm.get('name')?.touched)
-              ? 'red'
-              : ''
-        }"
-        placeholder="Ваше имя"
-        formControlName="name"
-      />
+  <div class="popup-container" [formGroup]="orderForm">
+    <div class="close-popup" (click)="closePopup()">
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 16 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <line
+          x1="1.93562"
+          y1="2.6499"
+          x2="13.9564"
+          y2="14.6707"
+          stroke="#BEBEBE"
+          stroke-linecap="round"
+        />
+        <line
+          x1="13.9236"
+          y1="2.62971"
+          x2="1.90277"
+          y2="14.6505"
+          stroke="#BEBEBE"
+          stroke-linecap="round"
+        />
+      </svg>
     </div>
-    <div class="popup-input">
-      <input
-        type="text"
-        class="input"
-        [ngStyle]="{
-          borderColor:
-          orderForm.get('phone')?.invalid &&
-            (orderForm.get('phone')?.dirty ||
-            orderForm.get('phone')?.touched)
-              ? 'red'
-              : ''
-        }"
-        placeholder="Ваш номер телефона"
-        formControlName="phone"
-      />
+    <form class="info-block">
+      <div class="popup-title">Заявка на услугу</div>
+      <div class="popup-input">
+        <input
+          type="text"
+          class="input"
+          [ngStyle]="{
+            borderColor:
+              orderForm.get('name')?.invalid &&
+              (orderForm.get('name')?.dirty || orderForm.get('name')?.touched)
+                ? 'red'
+                : ''
+          }"
+          placeholder="Ваше имя"
+          formControlName="name"
+        />
+      </div>
+      <div class="popup-input">
+        <input
+          type="text"
+          class="input"
+          [ngStyle]="{
+            borderColor:
+              orderForm.get('phone')?.invalid &&
+              (orderForm.get('phone')?.dirty || orderForm.get('phone')?.touched)
+                ? 'red'
+                : ''
+          }"
+          placeholder="Ваш номер телефона"
+          formControlName="phone"
+        />
+      </div>
+      <button class="button" [disabled]="orderForm.invalid"  (click)="serviceOrder()">
+        Оставить заявку
+      </button>
+    </form>
+  </div>
+  } @if(orderService.consultationPopupSignal()){
+ 
+  <div class="popup-container" >
+    <div class="close-popup" (click)="closePopup()">
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 16 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <line
+          x1="1.93562"
+          y1="2.6499"
+          x2="13.9564"
+          y2="14.6707"
+          stroke="#BEBEBE"
+          stroke-linecap="round"
+        />
+        <line
+          x1="13.9236"
+          y1="2.62971"
+          x2="1.90277"
+          y2="14.6505"
+          stroke="#BEBEBE"
+          stroke-linecap="round"
+        />
+      </svg>
+    </div>
+    <form class="info-block" [formGroup]="consultationForm">
+      <div class="popup-title">Закажите бесплатную консультацию!</div>
+      <div class="popup-input">
+        <input
+          type="text"
+          class="input"
+          [ngStyle]="{
+            borderColor:
+              consultationForm.get('name')?.invalid &&
+              (consultationForm.get('name')?.dirty ||
+                consultationForm.get('name')?.touched)
+                ? 'red'
+                : ''
+          }"
+          placeholder="Ваше имя"
+          formControlName="name"
+        />
+      </div>
+      <div class="popup-input">
+        <input
+          type="text"
+          class="input"
+          [ngStyle]="{
+            borderColor:
+              consultationForm.get('phone')?.invalid &&
+              (consultationForm.get('phone')?.dirty ||
+                consultationForm.get('phone')?.touched)
+                ? 'red'
+                : ''
+          }"
+          placeholder="Электронная почта"
+          formControlName="phone"
+        />
+      </div>
+      <button class="button" [disabled]="consultationForm.invalid" (click)="consultation()">
+        Заказать консультацию
+      </button>
+    </form>
+  </div>
+
+  } @if(orderService.isThanksPopupSignal()){
+  <div class="popup-container thanks">
+    <div class="close-popup" (click)="closePopup()">
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 16 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <line
+          x1="1.93562"
+          y1="2.6499"
+          x2="13.9564"
+          y2="14.6707"
+          stroke="#BEBEBE"
+          stroke-linecap="round"
+        />
+        <line
+          x1="13.9236"
+          y1="2.62971"
+          x2="1.90277"
+          y2="14.6505"
+          stroke="#BEBEBE"
+          stroke-linecap="round"
+        />
+      </svg>
+    </div>
+    <div class="info-block thanks">
+      <div class="popup-title">Спасибо за вашу заявку!</div>
+      <div class="popup-text">Мы свяжемся с вами при первой же возможности.</div>
+      <div class="button button-small" (click)="closePopup()">Окей</div>
     </div>
   </div>
-  } @if(!isChangePopup){
-  <div class="popup-consultation" [formGroup]="consultationForm">
-    <div class="close-popup" >
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <line x1="1.93562" y1="2.6499" x2="13.9564" y2="14.6707" stroke="#BEBEBE" stroke-linecap="round"/>
-          <line x1="13.9236" y1="2.62971" x2="1.90277" y2="14.6505" stroke="#BEBEBE" stroke-linecap="round"/>
-          </svg>            
-      </div>
-    <div class="popup-title">Закажите бесплатную консультацию!</div>
-    <div class="popup-input">
-      <input
-        type="text"
-        class="input"
-        [ngStyle]="{
-          borderColor:
-            consultationForm.get('name')?.invalid &&
-            (consultationForm.get('name')?.dirty ||
-              consultationForm.get('name')?.touched)
-              ? 'red'
-              : ''
-        }"
-        placeholder="Ваше имя"
-        formControlName="name"
-      />
-    </div>
-    <div class="popup-input">
-      <input
-        type="text"
-        class="input"
-        [ngStyle]="{
-          borderColor:
-            consultationForm.get('phone')?.invalid &&
-            (consultationForm.get('phone')?.dirty ||
-              consultationForm.get('phone')?.touched)
-              ? 'red'
-              : ''
-        }"
-        placeholder="Ваш номер телефона"
-        formControlName="phone"
-      />
-    </div>
-  </div>
-
   }
 </div>
 }

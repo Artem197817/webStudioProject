@@ -15,14 +15,13 @@ export class CommentService {
 
   constructor(private http: HttpClient) {}
 
-  addComment(params: AddCommentRequestType): Observable<DefaultResponseType> {
-    return this.http.post<DefaultResponseType>(environment.api + 'comments',
-      {params: params})
-
+  addComment(comment: AddCommentRequestType): Observable<DefaultResponseType> {
+    return this.http.post<DefaultResponseType>(environment.api + 'comments', comment);
   }
+  
   getComments(params: CommentRequestType): Observable<CommentResponseType> {
-    return this.http.get<CommentResponseType>(environment.api + 'comments',
-      {params: params})
+    return this.http.get<CommentResponseType>(environment.api + 'comments', { params });
+  }
 
   }
-}
+

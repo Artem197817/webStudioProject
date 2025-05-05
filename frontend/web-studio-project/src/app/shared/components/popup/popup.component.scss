@@ -1,0 +1,88 @@
+@use "../../../../assets/styles/_variables"as *;
+@use "../../../../assets/styles/_mixins"as *;
+
+.popup {
+  z-index: 999;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba($color: $dark-blue-color, $alpha: 0.8);
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .popup-container {
+    background-color: #ffffff;
+    padding: 95px 152px;
+    position: relative;
+    border-radius: 15px;
+
+    &.thanks {
+      padding: 163px 142px;
+    }
+
+    .close-popup {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      cursor: pointer;
+
+    }
+
+    .info-block {
+      box-sizing: border-box;
+      width: 422px;
+
+      &.thanks {
+        width: 443px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+      }
+
+      .popup-title {
+        @include title-Lora-38;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .popup-text {
+        margin-bottom: 25px;
+        text-align: center;
+        font-family: Montserrat, sans-serif;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 130%;
+        color: #1E1A2B;
+      }
+
+      .popup-input {
+        margin-bottom: 15px;
+
+        input {
+          font-size: 14px;
+          width: 422px;
+          color: $dark-blue-color;
+          line-height: 130%;
+          margin-bottom: 5px;
+
+          &::placeholder {
+            color: #A8ABA7;
+
+          }
+        }
+      }
+
+      .button {
+        width: 422px;
+        &.button-small{
+            width: 73px;
+        }
+      }
+    }
+
+
+  }
+}
