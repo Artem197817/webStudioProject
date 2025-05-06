@@ -8,6 +8,10 @@ export interface CommentType {
   dislikesCount: number;
   user: UserType;
   formattedDate?: string;
+   isViolate?: boolean;
+   isDislike?: boolean;
+   isLike?: boolean;
+
 }
 
 export type CommentRequestType = {

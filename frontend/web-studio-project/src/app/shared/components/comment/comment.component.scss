@@ -103,7 +103,11 @@
         display: flex;
         align-items: center;
         cursor: pointer;
+        color: $dark-blue-color;
 
+        &.add{
+          color: $blue-color;
+        }
         span{
           font-family: Montserrat, sans-serif;
           font-weight: 600;
@@ -111,7 +115,6 @@
           line-height: 140%;
           display: flex;
           align-items: center;
-          color: $dark-blue-color;
           margin-right: 3px;
         }
       }
@@ -120,6 +123,11 @@
         display: flex;
         align-items: center;
         cursor: pointer;
+        color: $dark-blue-color;
+
+        &.add{
+          color: $blue-color;
+        }
 
         span{
           font-family: Montserrat, sans-serif;
@@ -128,16 +136,27 @@
           line-height: 140%;
           display: flex;
           align-items: center;
-          color: $dark-blue-color;
           margin-right: 3px;
         }
       }
+      .comment-spam{
+        color: $dark-blue-color;
+        cursor: pointer;
 
+        &.add {
+          color: $blue-color;
+        }
+      }
     }
   }
   .comment-more{
     margin-top: 20px;
     @include title-Montserrat-500-20;
     color: $blue-color;
+    display: flex;
+    align-items: center;
+    span{
+      margin-right: 10px;
+    }
   }
 }

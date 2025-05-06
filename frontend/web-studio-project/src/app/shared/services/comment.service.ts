@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {environment} from '../../../environments/environment';
 import {AddCommentRequestType, CommentRequestType, CommentResponseType} from '../../types/comment.types';
 import {DefaultResponseType} from '../../types/default-response.types';
+import {CommentActionTypes} from '../../types/comment-action.types';
 
 @Injectable({
   providedIn: 'root'
@@ -20,5 +21,10 @@ export class CommentService {
     return this.http.get<CommentResponseType>(environment.api + 'comments', { params });
   }
 
+  applyAction(commentId: string, type: CommentActionTypes ): Observable<DefaultResponseType> {
+    return this.http.post<DefaultResponseType>(environment.api + 'comments/' + commentId + '/apply-action',{action: type} );
   }
+
+}
+
 

@@ -5,6 +5,8 @@ import {CommentService} from '../../services/comment.service';
 import {CommentResponseType, CommentType} from '../../../types/comment.types';
 import {RouterLink} from '@angular/router';
 import {FormsModule} from '@angular/forms';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {CommentActionTypes} from '../../../types/comment-action.types';
 
 @Component({
   selector: 'app-comment',
@@ -23,11 +25,12 @@ export class CommentComponent implements OnInit{
   protected isLoggedIn = false;
   protected allCountComments: number = 0;
   protected comments: CommentType[] = [];
-  protected minCountComments: number = 3;
+  protected minCountComments: number = 0;
   protected newCommentText: string = '';
 
   constructor(private authService: AuthService,
               private commentService: CommentService,
+              readonly snackBar: MatSnackBar,
               ) {
   }
   ngOnInit(): void {
@@ -38,12 +41,13 @@ export class CommentComponent implements OnInit{
         this.comments = data.comments;
         this.comments.forEach(comment => {
           comment.formattedDate = this.transformationDate(comment.date);
+
         });
       })
   }
 
   getComments(): void{
-    this.commentService.getComments({offset: this.minCountComments, article: this.article.id})
+    this.commentService.getComments({offset: 0, article: this.article.id})
       .subscribe((data: CommentResponseType) => {
         this.allCountComments = data.allCount;
         this.comments = data.comments;
@@ -72,5 +76,40 @@ export class CommentComponent implements OnInit{
         })
     }
 
+  }
+
+  addLike(comment: CommentType) {
+    comment.isDislike = false;
+    comment.isViolate = false;
+    this.commentService.applyAction(comment.id, CommentActionTypes.like)
+      .subscribe(()=>{
+        this.snackBar.open('Ваш голос учтен');
+        comment.isLike = true;
+      });
+  }
+
+  addDislike(comment: CommentType) {
+    comment.isLike = false;
+    comment.isViolate = false;
+    this.commentService.applyAction(comment.id, CommentActionTypes.dislike)
+      .subscribe(()=> {
+        this.snackBar.open('Ваш голос учтен');
+        comment.isDislike = true;
+      });
+  }
+
+  addViolate(comment: CommentType) {
+    if(comment.isViolate){
+      this.snackBar.open('Жалоба уже отправлена');
+      return;
+    }
+    comment.isLike = false;
+    comment.isDislike = false;
+
+    this.commentService.applyAction(comment.id, CommentActionTypes.dislike)
+      .subscribe(()=> {
+        this.snackBar.open('Жалоба отправлена');
+        comment.isViolate = true;
+      });
   }
 }
