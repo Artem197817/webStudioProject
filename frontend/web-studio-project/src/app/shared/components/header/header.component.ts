@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router, RouterLink} from '@angular/router';
-import {SharedUtilInfoService} from '../../utils/shared-util-info.service';
 import { AuthService } from '../../../core/auth/auth.service';
+import { MENU_ITEMS } from '../../../constants';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +14,7 @@ import { AuthService } from '../../../core/auth/auth.service';
 })
 export class HeaderComponent implements OnInit{
 
-  protected headerMenuList = SharedUtilInfoService.menuItems;
+  protected headerMenuList = MENU_ITEMS;
   protected isLogged: boolean = false;
 
 constructor(private authService: AuthService,

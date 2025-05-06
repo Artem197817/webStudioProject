@@ -1,11 +1,12 @@
 import {Component, CUSTOM_ELEMENTS_SCHEMA, OnInit} from '@angular/core';
-import {SharedUtilInfoService} from '../../utils/shared-util-info.service';
 import {CarouselModule, OwlOptions} from 'ngx-owl-carousel-o';
 import {provideAnimations} from '@angular/platform-browser/animations';
 import {ArticleType} from '../../../types/article.types';
 import {ArticleService} from '../../services/article.service';
 import {ArticleCardComponent} from '../article-card/article-card.component';
 import {RouterLink} from '@angular/router';
+import { REVIEW, SERVICES } from '../../../constants';
+import { OrderService } from '../../services/order.service';
 
 
 @Component({
@@ -24,7 +25,8 @@ import {RouterLink} from '@angular/router';
   ]
 })
 export class MainComponent implements OnInit{
- protected reviews = SharedUtilInfoService.review;
+ protected reviews = REVIEW;
+ protected services = SERVICES;
   protected customOptionsReviews: OwlOptions =  {
     loop: true,
     mouseDrag: false,
@@ -53,12 +55,18 @@ export class MainComponent implements OnInit{
   }
   protected articlesPopular: ArticleType[] = [];
 
-  constructor(private articleService: ArticleService)  {}
+  constructor(private articleService: ArticleService,
+              private orderService: OrderService,
+    )  {}
 
   ngOnInit(): void {
     this.articleService.getArticlePopular()
       .subscribe(data =>{
         this.articlesPopular = data;
       })
+  }
+
+  serviceOrder(id: number, name: string){
+    this.orderService.openOrderPopup(id,name);
   }
 }

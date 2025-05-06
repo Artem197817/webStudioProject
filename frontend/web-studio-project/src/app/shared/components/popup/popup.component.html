@@ -32,6 +32,13 @@
     <form class="info-block">
       <div class="popup-title">Заявка на услугу</div>
       <div class="popup-input">
+        <select formControlName="service" class="input">
+            @for(s of services; track s.id){
+                <option  [value]="s.name">{{s.name}}</option> 
+            }
+          </select>
+      </div>
+      <div class="popup-input">
         <input
           type="text"
           class="input"

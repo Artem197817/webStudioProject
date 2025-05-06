@@ -59,14 +59,14 @@
       }
 
       .popup-input {
-        margin-bottom: 15px;
+        margin-bottom: 5px;
 
-        input {
+        .input {
           font-size: 14px;
           width: 422px;
           color: $dark-blue-color;
           line-height: 130%;
-          margin-bottom: 5px;
+
 
           &::placeholder {
             color: #A8ABA7;

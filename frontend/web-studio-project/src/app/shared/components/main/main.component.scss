@@ -276,7 +276,7 @@
 }
 .reviews{
   .container {
-    margin-bottom: 60px;
+    margin-bottom: 50px;
     padding-bottom: 60px;
 
     .reviews-title{
@@ -285,6 +285,7 @@
     }
     .reviews-block{
       position: relative;
+      padding: 10px;
 
       .move-backward{
         position: absolute;
@@ -302,7 +303,7 @@
           border: 2px solid $blue-color;
           border-radius: 5px;
           padding: 30px;
-          width: 396px;
+          width: 394px;
           box-sizing: border-box;
 
           .review-image-name{

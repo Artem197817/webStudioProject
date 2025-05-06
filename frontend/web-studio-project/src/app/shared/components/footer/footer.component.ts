@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {RouterLink} from '@angular/router';
-import {SharedUtilInfoService} from '../../utils/shared-util-info.service';
 import { OrderService } from '../../services/order.service';
+import { MENU_ITEMS } from '../../../constants';
 
 @Component({
   selector: 'app-footer',
@@ -13,13 +13,13 @@ import { OrderService } from '../../services/order.service';
   styleUrl: './footer.component.scss'
 })
 export class FooterComponent {
-  protected footerMenuList = SharedUtilInfoService.menuItems;
+  protected footerMenuList = MENU_ITEMS;
   protected isCall: boolean = false;
 
   constructor(private orderService: OrderService){}
 
   activePopup(){
-    this.orderService.openPopup('consultation');
-    console.log('activePopup')
+    this.orderService.openConsultationPopup();
+
   }
 }

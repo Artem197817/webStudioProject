@@ -53,10 +53,14 @@ body {
   font-size: 14px;
   color: $dark-blue-color;
   box-sizing: border-box;
+  
 
   &::placeholder {
     color: #A8ABA7;
   }
+}
+input:focus, textarea:focus, select:focus {
+  outline: none;
 }
 
 .small-input {
