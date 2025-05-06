@@ -41,6 +41,17 @@ export class CommentComponent implements OnInit{
         });
       })
   }
+
+  getComments(): void{
+    this.commentService.getComments({offset: this.minCountComments, article: this.article.id})
+      .subscribe((data: CommentResponseType) => {
+        this.allCountComments = data.allCount;
+        this.comments = data.comments;
+        this.comments.forEach(comment => {
+          comment.formattedDate = this.transformationDate(comment.date);
+        });
+      })
+  }
   transformationDate(commentDate: string): string{
     const date = new Date(commentDate);
     const day = String(date.getDate()).padStart(2, '0');
@@ -56,7 +67,9 @@ export class CommentComponent implements OnInit{
   publishComment() {
     if(this.newCommentText && this.newCommentText.length > 10  && this.article.id){
       this.commentService.addComment({text: this.newCommentText, article: this.article.id})
-        .subscribe()
+        .subscribe(()=>{
+            this.getComments()
+        })
     }
 
   }

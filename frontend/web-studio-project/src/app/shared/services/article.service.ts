@@ -3,7 +3,6 @@ import {HttpClient} from '@angular/common/http';
 import {ArticlesType, ArticleType} from '../../types/article.types';
 import {Observable} from 'rxjs';
 import {environment} from '../../../environments/environment';
-import {Params} from '@angular/router';
 import {ActiveParamTypes} from '../../types/active-param.types';
 
 @Injectable({
