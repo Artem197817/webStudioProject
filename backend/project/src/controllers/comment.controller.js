@@ -213,5 +213,38 @@ class CommentController {
 
 module.exports = CommentController;
 
+/** static async getComments(req, res) {
+  const { article, offset = 0, limit = 3 } = req.query;
 
+  if (!article) {
+    return res.status(400).json({ error: true, message: "Не передан параметр article" });
+  }
 
+  const parsedOffset = parseInt(offset);
+  const parsedLimit = parseInt(limit);
+
+  const comments = await CommentModel.find({ article })
+    .sort({ date: -1 })
+    .skip(parsedOffset)
+    .limit(parsedLimit)
+    .populate('user');
+
+  const allCount = await CommentModel.countDocuments({ article });
+  const hasMore = parsedOffset + parsedLimit < allCount;
+
+  return res.json({
+    comments: comments.map(CommentNormalizer.normalize),
+    hasMore,
+  });
+}
+Как фронтенд будет использовать API
+Первая загрузка:
+Запрос GET /comments?article=123&offset=0&limit=3.
+
+Подгрузка следующих:
+Запрос GET /comments?article=123&offset=3&limit=10.
+
+Определение кнопки:
+Фронтенд проверяет hasMore из ответа.
+
+*/

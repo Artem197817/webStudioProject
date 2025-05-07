@@ -1,13 +1,17 @@
 <header>
   <div class="container">
-    <a routerLink="/" class="logo">
+    <a routerLink="/" class="logo" (click)="activateMenuItem(200)">
       <img src="assets/images/shared/logotype.png" alt="logo">
     </a>
     <nav>
       <ul>
         @for (headerMenuItem of headerMenuList; track headerMenuItem) {
           <li>
-            <a routerLink="{{headerMenuItem.link}}" fragment="{{headerMenuItem.fragment}}">{{ headerMenuItem.title }}</a>
+            <a routerLink="{{headerMenuItem.link}}"
+             fragment="{{headerMenuItem.fragment}}"
+             [class.active]="headerMenuItem.isActive"
+             (click)="activateMenuItem(headerMenuItem.id)"
+             >{{ headerMenuItem.title }}</a>
           </li>
         }
       </ul>
@@ -23,7 +27,12 @@
         <span class="logged-text">Войти</span>
       }
       @if (isLogged){
-        <span class="logged-text">Привет, Артем</span>
+        <span class="logged-text">Привет, {{userInfo?.name}}</span>
+      }
+      @if(isModal){
+        <div class="logged-modal">
+          <div class="logged-modal-text" (click)="logout()">Выйти</div>
+        </div>
       }
     </div>
   </div>

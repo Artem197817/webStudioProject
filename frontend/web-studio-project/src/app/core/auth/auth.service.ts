@@ -5,6 +5,7 @@ import {Observable, Subject, throwError} from 'rxjs';
 import {LoginResponseType} from '../../types/login-response.type';
 import {environment} from '../../../environments/environment';
 import { DefaultResponseType } from '../../types/default-response.types';
+import { UserType } from '../../types/user.types';
 
 @Injectable({
   providedIn: 'root'
@@ -96,5 +97,11 @@ export class AuthService {
       })
     }
     throw throwError(() => 'Can token not find');
+  }
+
+  
+  getUserInfo(): Observable<UserType | DefaultResponseType> {
+    return this.http.get<UserType | DefaultResponseType>(environment.api + 'users')
+
   }
 }

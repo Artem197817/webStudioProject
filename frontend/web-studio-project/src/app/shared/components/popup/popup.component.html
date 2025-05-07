@@ -65,6 +65,7 @@
                 : ''
           }"
           placeholder="Ваш номер телефона"
+        
           formControlName="phone"
         />
       </div>
@@ -133,6 +134,7 @@
                 : ''
           }"
           placeholder="Электронная почта"
+        
           formControlName="phone"
         />
       </div>
@@ -171,8 +173,8 @@
       </svg>
     </div>
     <div class="info-block thanks">
-      <div class="popup-title">Спасибо за вашу заявку!</div>
-      <div class="popup-text">Мы свяжемся с вами при первой же возможности.</div>
+      <div class="popup-title">{{thanksTitle}}</div>
+      <div class="popup-text">{{thanksText}}</div>
       <div class="button button-small" (click)="closePopup()">Окей</div>
     </div>
   </div>

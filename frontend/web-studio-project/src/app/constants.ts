@@ -28,11 +28,11 @@ export const REVIEW = [
 ];
 
 export const MENU_ITEMS = [
-    { title: 'Услуги', link: '/', fragment: 'services' },
-    { title: 'О нас', link: '/', fragment: 'about' },
-    { title: 'Статьи', link: '/blog', fragment: '' },
-    { title: 'Отзывы', link: '/', fragment: 'reviews' },
-    { title: 'Контакты', link: '/', fragment: 'contacts' },
+    { id: 1, title: 'Услуги', link: '/', fragment: 'services', isActive: false},
+    { id: 2, title: 'О нас', link: '/', fragment: 'about', isActive: false },
+    { id: 3, title: 'Статьи', link: '/blog', fragment: '', isActive: false },
+    { id: 4, title: 'Отзывы', link: '/', fragment: 'reviews', isActive: false },
+    { id: 5, title: 'Контакты', link: '/', fragment: 'contacts', isActive: false },
 ];
 
 export const SERVICES = [

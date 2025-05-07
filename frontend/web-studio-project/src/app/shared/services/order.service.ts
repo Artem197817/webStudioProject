@@ -1,4 +1,9 @@
 import { Injectable, signal } from '@angular/core';
+import { DefaultResponseType } from '../../types/default-response.types';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import {environment} from '../../../environments/environment';
+import { RequestType } from '../../types/request.types';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +22,7 @@ public isThanksPopupSignal = signal<boolean>(false);
 
 get activeService() { return this._activeService(); }
 
-constructor() {
+constructor(private http: HttpClient) {
  }
 
  openConsultationPopup() {
@@ -51,9 +56,9 @@ openOrderPopup(id: number, name: string ) {
   console.log(this.activeService)
 }
 
-/**
-addRequest()  addComment(comment: RequestType): Observable<DefaultResponseType> {
-  return this.http.post<DefaultResponseType>(environment.api + 'comments', comment);
-} */
+
+addRequest(request: RequestType): Observable<DefaultResponseType> {
+  return this.http.post<DefaultResponseType>(environment.api + 'requests', request);
+} 
 
 }

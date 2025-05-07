@@ -20,6 +20,18 @@
         .auth-input {
           margin-bottom: 5px;
 
+          &.password{
+            position: relative;
+
+            .toggle-password{
+              position: absolute;
+              top: 15px;
+              right: 15px;
+              background-color: transparent;
+              border: 0;
+              cursor: pointer;
+            }
+          }
           input {
             width: 422px;
           }

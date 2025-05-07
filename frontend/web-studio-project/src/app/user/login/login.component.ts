@@ -8,6 +8,7 @@ import { LoginResponseType } from '../../types/login-response.type';
 import { DefaultResponseType } from '../../types/default-response.types';
 import { CommonModule } from '@angular/common';
 
+
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -15,13 +16,14 @@ import { CommonModule } from '@angular/common';
     CommonModule,
     ReactiveFormsModule,
     RouterLink,
-  ],
+     ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
 
   protected loginForm: FormGroup;
+  protected passwordVisible: boolean = false;
 
   constructor(private fb: FormBuilder,
               private router: Router,
@@ -73,5 +75,8 @@ export class LoginComponent {
             }
           })
     }
+  }
+  togglePasswordVisibility() {
+    this.passwordVisible = !this.passwordVisible;
   }
 }

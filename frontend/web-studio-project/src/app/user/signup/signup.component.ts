@@ -22,7 +22,7 @@ import { CommonModule } from '@angular/common';
 export class SignupComponent implements OnInit{
 
   protected signupForm: FormGroup;
-
+  protected passwordVisible: boolean = false;
 
   constructor(private fb: FormBuilder,
               private router: Router,
@@ -100,4 +100,7 @@ readDocument(signal: boolean){
 }
 
 
+  togglePasswordVisibility() {
+    this.passwordVisible = !this.passwordVisible;
+  }
 }

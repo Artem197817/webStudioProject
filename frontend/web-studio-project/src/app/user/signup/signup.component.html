@@ -1,53 +1,112 @@
 <section [formGroup]="signupForm" class="signup">
-    <div class="container">
+  <div class="container">
+    <form class="auth-form">
+      <div class="auth-title">Регистрация на сайте</div>
+      <div class="auth-inputs">
+        <div class="auth-input">
+          <input
+            type="text"
+            class="input"
+            [ngStyle]="{
+              borderColor:
+                signupForm.get('name')?.invalid &&
+                (signupForm.get('name')?.dirty ||
+                  signupForm.get('name')?.touched)
+                  ? 'red'
+                  : ''
+            }"
+            placeholder="Ваше имя"
+            formControlName="name"
+          />
+        </div>
+        <div class="auth-input">
+          <input
+            type="text"
+            class="input"
+            [ngStyle]="{
+              borderColor:
+                signupForm.get('email')?.invalid &&
+                (signupForm.get('email')?.dirty ||
+                  signupForm.get('email')?.touched)
+                  ? 'red'
+                  : ''
+            }"
+            placeholder="Электронная почта"
+            formControlName="email"
+          />
+        </div>
+        <div class="auth-input password">
+          <input
+            type="password"
+            class="input"
+            [type]="passwordVisible ? 'text' : 'password'"
+            [ngStyle]="{
+              borderColor:
+                signupForm.get('password')?.invalid &&
+                (signupForm.get('password')?.dirty ||
+                  signupForm.get('password')?.touched)
+                  ? 'red'
+                  : ''
+            }"
+            placeholder="Пароль"
+            formControlName="password"
+          />
+          <button class="toggle-password" (click)="togglePasswordVisibility()">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1 12C2.73 7.61 7.11 4.5 12 4.5C16.89 4.5 21.27 7.61 23 12C21.27 16.39 16.89 19.5 12 19.5C7.11 19.5 2.73 16.39 1 12Z"
+                stroke="currentColor"
+                stroke-width="2"
+                fill="none"
+              />
+              <circle
+                cx="12"
+                cy="12"
+                r="3.5"
+                stroke="currentColor"
+                stroke-width="2"
+                fill="none"
+              />
+              <circle cx="12" cy="12" r="2" fill="currentColor" />
+            </svg>
+          </button>
+        </div>
 
-      <form class="auth-form">
-        <div class="auth-title">
-          Регистрация на сайте
+        <div class="auth-checkbox">
+          <input type="checkbox" id="agree" formControlName="agree" />
+          <label for="agree">
+            Я принимаю
+            <a (click)="readDocument(true)">
+              условия пользовательского соглашения
+            </a>
+            и даю
+            <a (click)="readDocument(false)">
+              согласие на обработку персональных данных.
+            </a>
+          </label>
         </div>
-        <div class="auth-inputs">
-          <div class="auth-input">
-            <input type="text" class="input"
-                   [ngStyle]="{'borderColor': signupForm.get('name')?.invalid && (signupForm.get('name')?.dirty ||
-                    signupForm.get('name')?.touched)? 'red' : ''}"
-                   placeholder="Ваше имя" formControlName="name">
-          </div>
-          <div class="auth-input">
-            <input type="text" class="input"
-                   [ngStyle]="{'borderColor': signupForm.get('email')?.invalid && (signupForm.get('email')?.dirty ||
-                    signupForm.get('email')?.touched)? 'red' : ''}"
-                   placeholder="Электронная почта" formControlName="email">
-          </div>
-          <div class="auth-input">
-            <input type="password" class="input"
-                   [ngStyle]="{'borderColor': signupForm.get('password')?.invalid && (signupForm.get('password')?.dirty ||
-                    signupForm.get('password')?.touched)? 'red' : ''}"
-                   placeholder="Пароль" formControlName="password">
-          </div>
-
-          <div class="auth-checkbox">
-            <input type="checkbox" id="agree" formControlName="agree">
-            <label for="agree">
-              Я принимаю
-              <a (click)="readDocument(true)">
-                условия пользовательского соглашения
-              </a>
-              и даю
-              <a (click)="readDocument(false)">
-                согласие на обработку персональных данных.
-              </a>
-            </label>
-          </div>
-        </div>
-        <div class="auth-button">
-          <button class="button" [disabled]="signupForm.invalid" (click)="signup()">Зарегистрироваться</button>
-        </div>
-        <div class="auth-link">
-          Уже есть аккаунт? <a routerLink="/login">Войдите</a>
-        </div>
-      </form>
-      <div class="page-image">
-        <img src="assets/images/user-login/signup.png" alt="image">
       </div>
+      <div class="auth-button">
+        <button
+          class="button"
+          [disabled]="signupForm.invalid"
+          (click)="signup()"
+        >
+          Зарегистрироваться
+        </button>
+      </div>
+      <div class="auth-link">
+        Уже есть аккаунт? <a routerLink="/login">Войдите</a>
+      </div>
+    </form>
+    <div class="page-image">
+      <img src="assets/images/user-login/signup.png" alt="image" />
     </div>
-  </section>
+  </div>
+</section>
