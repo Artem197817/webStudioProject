@@ -36,9 +36,11 @@ export class BlogComponent implements OnInit {
               private activatedRoute: ActivatedRoute,
               private router: Router,
   ) {
+
   }
 
   ngOnInit(): void {
+
     this.activatedRoute.queryParams
       .pipe(takeUntil(this.destroy$))
       .subscribe(params => {
@@ -79,6 +81,9 @@ export class BlogComponent implements OnInit {
           })
         }
       });
+    if(!this.activeParams.page){
+      this.activeParams.page = this.page;
+    }
   }
 
   ngOnDestroy(): void {

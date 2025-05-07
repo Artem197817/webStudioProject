@@ -21,7 +21,9 @@
               Продвижение в Instagram для вашего бизнеса <span>-15%</span>!
             </div>
             <div class="main-title-info-text"></div>
-            <button class="button">Подробнее</button>
+            <button class="button"
+                    (click)="serviceOrder(2, 'Продвижение')"
+            >Подробнее</button>
           </div>
         </div>
       </swiper-slide>
@@ -47,7 +49,9 @@
             <div class="main-title-info-text">
               Весь декабрь у нас действует акция на работу копирайтера.
             </div>
-            <button class="button">Подробнее</button>
+            <button class="button"
+                    (click)="serviceOrder(4, 'Копирайтинг')"
+            >Подробнее</button>
           </div>
         </div>
       </swiper-slide>
@@ -74,7 +78,9 @@
             <div class="main-title-info-text">
               Мы благодарим каждого, кто голосовал за нас!
             </div>
-            <button class="button">Подробнее</button>
+            <button class="button"
+                    (click)="serviceOrder(1, 'Создание сайтов')"
+            >Подробнее</button>
           </div>
         </div>
       </swiper-slide>
@@ -100,7 +106,7 @@
           </div>
         </div>
       }
- 
+
     </div>
   </div>
 </section>
