@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {Router, RouterLink, RouterModule} from '@angular/router';
-import { AuthService } from '../../../core/auth/auth.service';
-import { MENU_ITEMS } from '../../../constants';
-import { UserType } from '../../../types/user.types';
-import { DefaultResponseType } from '../../../types/default-response.types';
-import { HttpErrorResponse } from '@angular/common/http';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import {AuthService} from '../../../core/auth/auth.service';
+import {MENU_ITEMS} from '../../../constants';
+import {UserType} from '../../../types/user.types';
+import {DefaultResponseType} from '../../../types/default-response.types';
+import {HttpErrorResponse} from '@angular/common/http';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-header',
@@ -17,7 +17,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent implements OnInit{
+export class HeaderComponent implements OnInit {
 
   protected headerMenuList = MENU_ITEMS;
   protected isLogged: boolean = false;
@@ -25,40 +25,45 @@ export class HeaderComponent implements OnInit{
   protected isModal: boolean = false;
   private timeoutId: any;
 
-constructor(private authService: AuthService,
-            private router: Router,
-            private _snackBar: MatSnackBar){}
+  constructor(private authService: AuthService,
+              private router: Router,
+              private _snackBar: MatSnackBar) {
+  }
 
   ngOnInit(): void {
     this.isLogged = this.authService.getisLoggedIn();
 
     this.authService.isLogged$.subscribe(isLoggedIn => {
       this.isLogged = isLoggedIn;
+      this.getUserInfo()
     });
 
-    if(this.isLogged){
-      this.authService.getUserInfo()
-        .subscribe((data: UserType | DefaultResponseType) => {
-          if ((data as DefaultResponseType).error !== undefined) {
-            throw new Error((data as DefaultResponseType).message);
-          }
-          this.userInfo = data as UserType;
-        });
+    if (this.isLogged) {
+      this.getUserInfo()
     }
   }
 
 
   loginNavigate(): void {
-    if(!this.isLogged){
-      this.isModal = !this.isModal;
+    if (!this.isLogged) {
       this.router.navigate(['/login']);
-    }else{
+    } else {
       this.isModal = !this.isModal;
       clearTimeout(this.timeoutId);
       this.timeoutId = setTimeout(() => {
-        this.isModal = !this.isModal;
+        this.isModal = false;
       }, 3000);
     }
+  }
+
+  getUserInfo() {
+    this.authService.getUserInfo()
+      .subscribe((data: UserType | DefaultResponseType) => {
+        if ((data as DefaultResponseType).error !== undefined) {
+          throw new Error((data as DefaultResponseType).message);
+        }
+        this.userInfo = data as UserType;
+      });
   }
 
   logout(): void {
@@ -82,7 +87,7 @@ constructor(private authService: AuthService,
     this.router.navigate(['/'])
   }
 
-  activateMenuItem(id: number){
+  activateMenuItem(id: number) {
     this.headerMenuList.forEach(menuItem => {
       menuItem.isActive = menuItem.id === id;
     })

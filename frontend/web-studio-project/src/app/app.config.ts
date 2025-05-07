@@ -14,7 +14,6 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withInterceptors([authInterceptor])),
     importProvidersFrom(
       RouterModule.forRoot(routes, {
-      onSameUrlNavigation: 'reload',
       anchorScrolling: 'enabled',
       scrollPositionRestoration: 'enabled'
       })),
