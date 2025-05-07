@@ -72,6 +72,7 @@ export class CommentComponent implements OnInit{
     if(this.newCommentText && this.newCommentText.length > 10  && this.article.id){
       this.commentService.addComment({text: this.newCommentText, article: this.article.id})
         .subscribe(()=>{
+            this.newCommentText = '';
             this.getComments()
         })
     }
@@ -81,20 +82,40 @@ export class CommentComponent implements OnInit{
   addLike(comment: CommentType) {
     comment.isDislike = false;
     comment.isViolate = false;
+    if(comment.isLike){
+      this.commentService.applyAction(comment.id, CommentActionTypes.like)
+        .subscribe(()=>{
+          this.snackBar.open('Ваш голос учтен');
+          comment.isLike = false;
+          comment.likesCount--;
+        });
+      return;
+    }
     this.commentService.applyAction(comment.id, CommentActionTypes.like)
       .subscribe(()=>{
         this.snackBar.open('Ваш голос учтен');
         comment.isLike = true;
+        comment.likesCount++;
       });
   }
 
   addDislike(comment: CommentType) {
     comment.isLike = false;
     comment.isViolate = false;
+    if (comment.isDislike) {
+      this.commentService.applyAction(comment.id, CommentActionTypes.dislike)
+        .subscribe(() => {
+          this.snackBar.open('Ваш голос учтен');
+          comment.isDislike = false;
+          comment.dislikesCount--;
+        });
+      return;
+    }
     this.commentService.applyAction(comment.id, CommentActionTypes.dislike)
-      .subscribe(()=> {
+      .subscribe(() => {
         this.snackBar.open('Ваш голос учтен');
         comment.isDislike = true;
+        comment.dislikesCount++;
       });
   }
 

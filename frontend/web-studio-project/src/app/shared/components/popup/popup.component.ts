@@ -4,14 +4,13 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { OrderService } from '../../services/order.service';
 import { SERVICES } from '../../../constants';
 import { RequestEnumType } from '../../../types/request.types';
-import { NgxMaskDirective } from 'ngx-mask';
+
 
 @Component({
   selector: 'app-popup',
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    NgxMaskDirective,
   ],
   standalone: true,
   templateUrl: './popup.component.html',
@@ -66,6 +65,7 @@ export class PopupComponent implements OnInit {
       this.orderService.addRequest(request)
         .subscribe((response) => {
           if (!response.error) {
+            this.consultationForm.reset();
             this.orderService.thanksPopup();
           } else {
             this.thanksTitle = 'Что то пошло не так!';
@@ -88,6 +88,7 @@ export class PopupComponent implements OnInit {
       this.orderService.addRequest(request)
         .subscribe((response) => {
           if (!response.error) {
+            this.orderForm.reset();
             this.orderService.thanksPopup();
           } else {
             this.thanksTitle = 'Что то пошло не так!';
@@ -99,4 +100,3 @@ export class PopupComponent implements OnInit {
   }
 }
 
-/**  mask="+7 (000) 000-00-00" */

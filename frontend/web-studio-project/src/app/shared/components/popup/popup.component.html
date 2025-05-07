@@ -34,7 +34,7 @@
       <div class="popup-input">
         <select formControlName="service" class="input">
             @for(s of services; track s.id){
-                <option  [value]="s.name">{{s.name}}</option> 
+                <option  [value]="s.name">{{s.name}}</option>
             }
           </select>
       </div>
@@ -65,7 +65,6 @@
                 : ''
           }"
           placeholder="Ваш номер телефона"
-        
           formControlName="phone"
         />
       </div>
@@ -75,7 +74,7 @@
     </form>
   </div>
   } @if(orderService.consultationPopupSignal()){
- 
+
   <div class="popup-container" >
     <div class="close-popup" (click)="closePopup()">
       <svg
@@ -133,8 +132,8 @@
                 ? 'red'
                 : ''
           }"
-          placeholder="Электронная почта"
-        
+          placeholder="Ваш номер телефона"
+
           formControlName="phone"
         />
       </div>

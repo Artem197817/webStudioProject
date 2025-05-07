@@ -30,23 +30,27 @@ constructor(private authService: AuthService,
             private _snackBar: MatSnackBar){}
 
   ngOnInit(): void {
+    this.isLogged = this.authService.getisLoggedIn();
+
     this.authService.isLogged$.subscribe(isLoggedIn => {
       this.isLogged = isLoggedIn;
-      if(this.isLogged){
-        this.authService.getUserInfo()
+    });
+
+    if(this.isLogged){
+      this.authService.getUserInfo()
         .subscribe((data: UserType | DefaultResponseType) => {
           if ((data as DefaultResponseType).error !== undefined) {
             throw new Error((data as DefaultResponseType).message);
           }
           this.userInfo = data as UserType;
-        })
-      }
-    })
+        });
+    }
   }
 
 
   loginNavigate(): void {
     if(!this.isLogged){
+      this.isModal = !this.isModal;
       this.router.navigate(['/login']);
     }else{
       this.isModal = !this.isModal;
@@ -73,16 +77,14 @@ constructor(private authService: AuthService,
   private doLogout(): void {
     this.authService.removeTokens();
     this.authService.userId = null;
+    this.isModal = false;
     this._snackBar.open('Вы разлогинены')
     this.router.navigate(['/'])
   }
 
   activateMenuItem(id: number){
     this.headerMenuList.forEach(menuItem => {
-      menuItem.isActive = false;
-      if(menuItem.id === id){
-        menuItem.isActive = true;
-      }
+      menuItem.isActive = menuItem.id === id;
     })
   }
 }
