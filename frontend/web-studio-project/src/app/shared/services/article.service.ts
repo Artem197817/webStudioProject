@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ArticlesType, ArticleType} from '../../types/article.types';
 import {Observable} from 'rxjs';
@@ -10,22 +10,23 @@ import {ActiveParamTypes} from '../../types/active-param.types';
 })
 export class ArticleService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
-  getArticlePopular(): Observable<ArticleType[]> {
+  public getArticlePopular(): Observable<ArticleType[]> {
     return this.http.get<ArticleType[]>(environment.api + 'articles/top')
   }
 
-  getArticles(params: ActiveParamTypes): Observable<ArticlesType> {
+  public getArticles(params: ActiveParamTypes): Observable<ArticlesType> {
     return this.http.get<ArticlesType>(environment.api + 'articles', {params: params})
 
   }
 
-  getArticle(url: string): Observable<ArticleType> {
+  public getArticle(url: string): Observable<ArticleType> {
     return this.http.get<ArticleType>(environment.api + 'articles' + '/' + url);
   }
 
-  getArticleRelated(url: string): Observable<ArticleType[]> {
+  public getArticleRelated(url: string): Observable<ArticleType[]> {
     return this.http.get<ArticleType[]>(environment.api + 'articles/related' + '/' + url);
   }
 }

@@ -10,10 +10,10 @@
   box-sizing: border-box;
   margin-bottom: 40px;
 
-  .article-card-info{
+  .article-card-info {
     position: relative;
 
-    .article-card-category{
+    .article-card-category {
       padding: 10px 18px;
       font-size: 11px;
       line-height: 130%;
@@ -26,24 +26,28 @@
       border-radius: 5px;
       background: #ffffff;
     }
-    .article-card-image{
+
+    .article-card-image {
       width: 291px;
       height: 291px;
       background-size: cover;
       background-position: center;
       margin-bottom: 15px;
     }
-    .article-card-title{
+
+    .article-card-title {
       margin-bottom: 20px;
       @include title-Montserrat-500-20;
     }
-    .article-card-text{
+
+    .article-card-text {
       font-size: 14px;
       line-height: 130%;
       color: $dark-blue-color;
     }
-        }
-  .article-card-link{
+  }
+
+  .article-card-link {
     font-size: 16px;
     line-height: 130%;
     color: $blue-color;

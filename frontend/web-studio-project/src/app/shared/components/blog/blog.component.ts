@@ -12,7 +12,6 @@ import {ArticleCardComponent} from '../article-card/article-card.component';
   selector: 'app-blog',
   imports: [
     ArticleCardComponent
-
   ],
   standalone: true,
   templateUrl: './blog.component.html',
@@ -21,12 +20,12 @@ import {ArticleCardComponent} from '../article-card/article-card.component';
 export class BlogComponent implements OnInit {
 
   protected articles: ArticleType[] = [];
-  count: number = 0;
-  page: number = 1;
-  pages: number[] = [];
+  private count: number = 0;
+  private page: number = 1;
+  protected pages: number[] = [];
   protected categories: CategoryType[] = [];
   protected activeParams: ActiveParamTypes = {categories: []};
-  protected appliedFilter: {name: string, url: string}[] = [];
+  protected appliedFilter: { name: string, url: string }[] = [];
   protected isSorting: boolean = false;
   private destroy$ = new Subject<void>();
 
@@ -36,10 +35,9 @@ export class BlogComponent implements OnInit {
               private activatedRoute: ActivatedRoute,
               private router: Router,
   ) {
-
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
 
     this.activatedRoute.queryParams
       .pipe(takeUntil(this.destroy$))
@@ -50,7 +48,7 @@ export class BlogComponent implements OnInit {
           .subscribe((data: ArticlesType) => {
             this.articles = data.items;
             this.count = data.count;
-            this.pages = Array.from({ length: data.pages }, (_, i) => i + 1);
+            this.pages = Array.from({length: data.pages}, (_, i) => i + 1);
           });
 
         if (this.categories.length === 0) {
@@ -72,7 +70,7 @@ export class BlogComponent implements OnInit {
             }
           });
 
-       } else {
+        } else {
           this.appliedFilter = [];
           this.categories.forEach(category => {
             if (category.isChange) {
@@ -81,7 +79,7 @@ export class BlogComponent implements OnInit {
           })
         }
       });
-    if(!this.activeParams.page){
+    if (!this.activeParams.page) {
       this.activeParams.page = this.page;
     }
   }
@@ -91,12 +89,12 @@ export class BlogComponent implements OnInit {
     this.destroy$.complete();
   }
 
-  changingIsSorting(event?: MouseEvent) {
+  protected changingIsSorting(event?: MouseEvent) {
     event?.stopPropagation();
     this.isSorting = !this.isSorting;
   }
 
-  filer(category: CategoryType) {
+  protected filter(category: CategoryType) {
     category.isChange = !category.isChange;
 
     let newCategories = this.activeParams.categories ? [...this.activeParams.categories] : [];
@@ -122,8 +120,8 @@ export class BlogComponent implements OnInit {
     });
   }
 
-  processParams(params: Params): ActiveParamTypes {
-    const activeParams: ActiveParamTypes = { categories: [] };
+  private processParams(params: Params): ActiveParamTypes {
+    const activeParams: ActiveParamTypes = {categories: []};
     if (params.hasOwnProperty('categories')) {
       activeParams.categories = Array.isArray(params['categories']) ? params['categories'] : [params['categories']];
     }
@@ -132,7 +130,8 @@ export class BlogComponent implements OnInit {
     }
     return activeParams;
   }
-  openPage(page: number) {
+
+  protected openPage(page: number) {
     this.activeParams.page = page;
     this.router.navigate(['/blog'], {
       queryParams: this.activeParams,
@@ -140,16 +139,16 @@ export class BlogComponent implements OnInit {
     });
   }
 
-  openNextPage() {
+  protected openNextPage() {
     if (this.activeParams.page && this.activeParams.page < this.pages.length) {
       this.activeParams.page++;
       this.router.navigate(['/blog'], {
-        queryParams: this.activeParams,  queryParamsHandling: 'merge'
+        queryParams: this.activeParams, queryParamsHandling: 'merge'
       });
     }
   }
 
-  openPrevPage() {
+  protected openPrevPage() {
     if (this.activeParams.page && this.activeParams.page > 1) {
       this.activeParams.page--;
       this.router.navigate(['/blog'], {
@@ -158,10 +157,10 @@ export class BlogComponent implements OnInit {
     }
   }
 
-  deleteFilterOption(url: string) {
+  protected deleteFilterOption(url: string) {
     const findCategory = this.categories.find(item => item.url === url);
     if (findCategory) {
-      this.filer(findCategory);
+      this.filter(findCategory);
     }
   }
 }

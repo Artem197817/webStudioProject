@@ -3,10 +3,10 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 import {Router, RouterLink} from '@angular/router';
 import {HttpErrorResponse} from '@angular/common/http';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import { AuthService } from '../../core/auth/auth.service';
-import { LoginResponseType } from '../../types/login-response.type';
-import { DefaultResponseType } from '../../types/default-response.types';
-import { CommonModule } from '@angular/common';
+import {AuthService} from '../../core/auth/auth.service';
+import {LoginResponseType} from '../../types/login-response.type';
+import {DefaultResponseType} from '../../types/default-response.types';
+import {CommonModule} from '@angular/common';
 
 
 @Component({
@@ -16,7 +16,7 @@ import { CommonModule } from '@angular/common';
     CommonModule,
     ReactiveFormsModule,
     RouterLink,
-     ],
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -76,7 +76,8 @@ export class LoginComponent {
           })
     }
   }
-  togglePasswordVisibility() {
+
+  protected togglePasswordVisibility() {
     this.passwordVisible = !this.passwordVisible;
   }
 }

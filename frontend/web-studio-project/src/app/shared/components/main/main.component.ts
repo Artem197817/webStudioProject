@@ -5,8 +5,8 @@ import {ArticleType} from '../../../types/article.types';
 import {ArticleService} from '../../services/article.service';
 import {ArticleCardComponent} from '../article-card/article-card.component';
 import {RouterLink} from '@angular/router';
-import { REVIEW, SERVICES } from '../../../constants';
-import { OrderService } from '../../services/order.service';
+import {REVIEW, SERVICES} from '../../../constants';
+import {OrderService} from '../../services/order.service';
 
 
 @Component({
@@ -24,10 +24,10 @@ import { OrderService } from '../../services/order.service';
     provideAnimations()  // подключаем анимации
   ]
 })
-export class MainComponent implements OnInit{
- protected reviews = REVIEW;
- protected services = SERVICES;
-  protected customOptionsReviews: OwlOptions =  {
+export class MainComponent implements OnInit {
+  protected reviews = REVIEW;
+  protected services = SERVICES;
+  protected customOptionsReviews: OwlOptions = {
     loop: true,
     mouseDrag: false,
     touchDrag: false,
@@ -57,16 +57,17 @@ export class MainComponent implements OnInit{
 
   constructor(private articleService: ArticleService,
               private orderService: OrderService,
-    )  {}
+  ) {
+  }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.articleService.getArticlePopular()
-      .subscribe(data =>{
+      .subscribe(data => {
         this.articlesPopular = data;
       })
   }
 
-  serviceOrder(id: number, name: string){
-    this.orderService.openOrderPopup(id,name);
+  protected serviceOrder(id: number, name: string) {
+    this.orderService.openOrderPopup(id, name);
   }
 }

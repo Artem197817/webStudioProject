@@ -1,9 +1,9 @@
-import { CommonModule } from '@angular/common';
-import { Component, OnInit, effect } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { OrderService } from '../../services/order.service';
-import { SERVICES } from '../../../constants';
-import { RequestEnumType } from '../../../types/request.types';
+import {CommonModule} from '@angular/common';
+import {Component, effect, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {OrderService} from '../../services/order.service';
+import {SERVICES} from '../../../constants';
+import {RequestEnumType} from '../../../types/request.types';
 
 
 @Component({
@@ -25,8 +25,8 @@ export class PopupComponent implements OnInit {
   protected thanksText = 'Мы свяжемся с вами при первой же возможности.';
 
   constructor(private fb: FormBuilder,
-    private fb2: FormBuilder,
-    protected orderService: OrderService,
+              private fb2: FormBuilder,
+              protected orderService: OrderService,
   ) {
 
     this.orderForm = this.fb.group({
@@ -43,18 +43,20 @@ export class PopupComponent implements OnInit {
     effect(() => {
       const activeService = this.orderService.activeService;
       if (activeService && activeService.name) {
-        this.orderForm.patchValue({ service: activeService.name });
+        this.orderForm.patchValue({service: activeService.name});
       }
     });
   }
-  ngOnInit(): void {
+
+  public ngOnInit(): void {
 
   }
 
-  closePopup() {
+  protected closePopup() {
     this.orderService.closePopup();
   }
-  consultation() {
+
+  protected consultation() {
     if (this.consultationForm.valid) {
       const request = {
         name: this.consultationForm.value.name,
@@ -76,7 +78,7 @@ export class PopupComponent implements OnInit {
     }
   }
 
-  serviceOrder() {
+  protected serviceOrder() {
     if (this.orderForm.valid) {
       const request = {
         service: this.orderForm.value.service,

@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, Validators} from '@angular/forms';
 import {Router, RouterLink} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {HttpErrorResponse} from '@angular/common/http';
-import { DefaultResponseType } from '../../types/default-response.types';
-import { AuthService } from '../../core/auth/auth.service';
-import { LoginResponseType } from '../../types/login-response.type';
-import { CommonModule } from '@angular/common';
+import {DefaultResponseType} from '../../types/default-response.types';
+import {AuthService} from '../../core/auth/auth.service';
+import {LoginResponseType} from '../../types/login-response.type';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-signup',
@@ -19,7 +19,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss'
 })
-export class SignupComponent implements OnInit{
+export class SignupComponent implements OnInit {
 
   protected signupForm: FormGroup;
   protected passwordVisible: boolean = false;
@@ -30,14 +30,14 @@ export class SignupComponent implements OnInit{
               readonly snackBar: MatSnackBar,) {
 
     this.signupForm = this.fb.group({
-      name:['', [Validators.required]],
+      name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).+$')]],
       agree: [false, Validators.requiredTrue],
     });
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.signupForm.get('agree')?.setValue(this.authService.acceptAgreementSignal());
   }
 
@@ -94,13 +94,13 @@ export class SignupComponent implements OnInit{
   }
 
 
-readDocument(signal: boolean){
-  this.authService.documentSignal.set(signal);
-  this.router.navigate(['/user-agreement']);
-}
+  protected readDocument(signal: boolean) {
+    this.authService.documentSignal.set(signal);
+    this.router.navigate(['/user-agreement']);
+  }
 
 
-  togglePasswordVisibility() {
+  protected togglePasswordVisibility() {
     this.passwordVisible = !this.passwordVisible;
   }
 }

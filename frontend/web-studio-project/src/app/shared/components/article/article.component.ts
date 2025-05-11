@@ -22,13 +22,14 @@ export class ArticleComponent implements OnInit {
   protected article!: ArticleType;
   protected serverStaticPath: string = environment.serverStaticPath;
   protected articles: ArticleType[] = [];
+
   constructor(private activatedRoute: ActivatedRoute,
               private router: Router,
               private articleService: ArticleService,
-              private sanitizer: DomSanitizer)  {
+              private sanitizer: DomSanitizer) {
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.activatedRoute.params
       .subscribe(params => {
         this.articleService.getArticle(params['url'])
@@ -36,7 +37,7 @@ export class ArticleComponent implements OnInit {
             this.article = data;
             if (this.article) {
               this.articleService.getArticleRelated(this.article.url)
-                .subscribe((articles: ArticleType[] )=> {
+                .subscribe((articles: ArticleType[]) => {
                   this.articles = articles;
                 })
             }
@@ -44,11 +45,11 @@ export class ArticleComponent implements OnInit {
       })
   }
 
-  getSafeHtml(): SafeHtml {
-    if(this.article && this.article.text){
+  protected getSafeHtml(): SafeHtml {
+    if (this.article && this.article.text) {
       return this.sanitizer.bypassSecurityTrustHtml(this.article.text);
     }
-   return this.sanitizer.bypassSecurityTrustHtml('');
+    return this.sanitizer.bypassSecurityTrustHtml('');
   }
 
 }

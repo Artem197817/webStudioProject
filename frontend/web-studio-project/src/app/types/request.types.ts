@@ -1,6 +1,6 @@
 export enum RequestEnumType {
-    order = 'order',
-    consultation = 'consultation',
+  order = 'order',
+  consultation = 'consultation',
 }
 
 export type RequestType = {

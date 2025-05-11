@@ -1,11 +1,11 @@
-@if(article){
-<div class="article-card">
-  <div class="article-card-info">
-  <div class="article-card-category">{{article.category}}</div>
-  <div class="article-card-image" style="background-image: url({{serverStaticPath + article.image}})"></div>
-  <div class="article-card-title">{{article.title | truncateText:55}}</div>
-  <div class="article-card-text">{{article.description | truncateText:250}}</div>
+@if (article) {
+  <div class="article-card">
+    <div class="article-card-info">
+      <div class="article-card-category">{{ article.category }}</div>
+      <div class="article-card-image" style="background-image: url({{serverStaticPath + article.image}})"></div>
+      <div class="article-card-title">{{ article.title | truncateText:55 }}</div>
+      <div class="article-card-text">{{ article.description | truncateText:250 }}</div>
+    </div>
+    <a (click)="navigate(article.url)" class="article-card-link">Читать дальше</a>
   </div>
-  <a (click)="navigate(article.url)"  class="article-card-link">Читать дальше</a>
-</div>
 }

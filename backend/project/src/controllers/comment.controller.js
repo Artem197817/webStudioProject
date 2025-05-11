@@ -20,8 +20,8 @@ class CommentController {
         const comment = new CommentModel({
             text: req.body.text,
             date: new Date(),
-            user: req.user.id,       // или new Types.ObjectId(req.user.id)
-            article: req.body.article // или new Types.ObjectId(req.body.article)
+            user: req.user.id,
+            article: req.body.article
         });
 
         try {
@@ -32,24 +32,6 @@ class CommentController {
             return res.status(500).json({ error: true, message: "Ошибка сервера" });
         }
     }
-    // static async addComment(req, res) {
-    //     const {error} = ValidationUtils.addCommentValidation(req.body);
-    //
-    //     if (error) {
-    //         console.log(error.details);
-    //         return res.status(400).json({error: true, message: error.details[0].message});
-    //     }
-    //
-    //     let comment = new CommentModel();
-    //     comment.text = req.body.text;
-    //     comment.date = new Date();
-    //     comment.user = new mongoose.Types.ObjectId(req.user.id);
-    //     comment.article = new mongoose.Types.ObjectId(req.body.article);
-    //
-    //     const result = await comment.save();
-    //
-    //     res.status(200).json({error: false, message: "Комментарий добавлен!"});
-    // }
 
     static async getComments(req, res) {
         const {article} = req.query;
@@ -212,39 +194,3 @@ class CommentController {
 }
 
 module.exports = CommentController;
-
-/** static async getComments(req, res) {
-  const { article, offset = 0, limit = 3 } = req.query;
-
-  if (!article) {
-    return res.status(400).json({ error: true, message: "Не передан параметр article" });
-  }
-
-  const parsedOffset = parseInt(offset);
-  const parsedLimit = parseInt(limit);
-
-  const comments = await CommentModel.find({ article })
-    .sort({ date: -1 })
-    .skip(parsedOffset)
-    .limit(parsedLimit)
-    .populate('user');
-
-  const allCount = await CommentModel.countDocuments({ article });
-  const hasMore = parsedOffset + parsedLimit < allCount;
-
-  return res.json({
-    comments: comments.map(CommentNormalizer.normalize),
-    hasMore,
-  });
-}
-Как фронтенд будет использовать API
-Первая загрузка:
-Запрос GET /comments?article=123&offset=0&limit=3.
-
-Подгрузка следующих:
-Запрос GET /comments?article=123&offset=3&limit=10.
-
-Определение кнопки:
-Фронтенд проверяет hasMore из ответа.
-
-*/

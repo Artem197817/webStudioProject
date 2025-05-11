@@ -21,10 +21,10 @@
         .auth-input {
           margin-bottom: 5px;
 
-          &.password{
+          &.password {
             position: relative;
 
-            .toggle-password{
+            .toggle-password {
               position: absolute;
               top: 15px;
               right: 15px;
@@ -47,32 +47,35 @@
           label {
             font-size: 14px;
             color: $dark-blue-color;
-            a{
+
+            a {
               color: $blue-color;
-                text-decoration: underline;
-                cursor: pointer;
+              text-decoration: underline;
+              cursor: pointer;
             }
 
           }
         }
-    }
-        .auth-button{
-            margin-bottom: 10px;
-            button{
-                width: 422px;
-            }
-        }
-        .auth-link{
-            font-size: 14px;
-            color: $dark-blue-color;
+      }
 
-            a{
-                text-decoration: none;
-                color: $blue-color;
-                cursor: pointer;
-            }
-        }
+      .auth-button {
+        margin-bottom: 10px;
 
+        button {
+          width: 422px;
+        }
+      }
+
+      .auth-link {
+        font-size: 14px;
+        color: $dark-blue-color;
+
+        a {
+          text-decoration: none;
+          color: $blue-color;
+          cursor: pointer;
+        }
+      }
 
 
     }

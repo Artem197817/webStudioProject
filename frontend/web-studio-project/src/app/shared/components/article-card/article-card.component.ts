@@ -14,17 +14,17 @@ import {TruncateTextPipe} from '../../utils/truncate-text.pipe';
   templateUrl: './article-card.component.html',
   styleUrl: './article-card.component.scss'
 })
-export class ArticleCardComponent{
+export class ArticleCardComponent {
 
   @Input() article!: ArticleType;
 
   protected serverStaticPath: string = environment.serverStaticPath;
+
   constructor(private router: Router) {
   }
 
 
-
-  navigate(url: string) {
+  protected navigate(url: string) {
     this.router.navigate(['article/' + url])
   }
 }

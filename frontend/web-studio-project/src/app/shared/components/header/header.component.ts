@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit {
               private _snackBar: MatSnackBar) {
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.isLogged = this.authService.getisLoggedIn();
 
     this.authService.isLogged$.subscribe(isLoggedIn => {
@@ -44,7 +44,7 @@ export class HeaderComponent implements OnInit {
   }
 
 
-  loginNavigate(): void {
+  protected loginNavigate(): void {
     if (!this.isLogged) {
       this.router.navigate(['/login']);
     } else {
@@ -56,7 +56,7 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  getUserInfo() {
+  private getUserInfo() {
     this.authService.getUserInfo()
       .subscribe((data: UserType | DefaultResponseType) => {
         if ((data as DefaultResponseType).error !== undefined) {
@@ -66,7 +66,7 @@ export class HeaderComponent implements OnInit {
       });
   }
 
-  logout(): void {
+  protected logout(): void {
     this.authService.logout()
       .subscribe({
         next: (data: DefaultResponseType) => {
@@ -87,7 +87,7 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/'])
   }
 
-  activateMenuItem(id: number) {
+  protected activateMenuItem(id: number) {
     this.headerMenuList.forEach(menuItem => {
       menuItem.isActive = menuItem.id === id;
     })

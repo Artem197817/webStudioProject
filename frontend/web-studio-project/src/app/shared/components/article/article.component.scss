@@ -70,16 +70,19 @@
         .article-text {
           margin-bottom: 60px;
         }
-        .article-social{
+
+        .article-social {
           display: flex;
           align-items: center;
-          span{
+
+          span {
             font-family: Montserrat, sans-serif;
             font-weight: 500;
             font-size: 14px;
             margin-right: 5px;
             color: $blue-color;
           }
+
           .article-social-block {
             display: flex;
             align-items: center;
@@ -91,23 +94,28 @@
         }
 
       }
-      .article-related-block{
+
+      .article-related-block {
         margin-top: 60px;
-        .article-related-title{
+
+        .article-related-title {
           @include title-Lora-26;
           color: $blue-color;
           margin-bottom: 20px;
         }
-        article-card{
+
+        article-card {
           margin-bottom: 40px;
         }
-        .article-card{
+
+        .article-card {
           margin-bottom: 40px;
         }
       }
     }
   }
 }
-.article-card{
+
+.article-card {
   margin-bottom: 40px;
 }

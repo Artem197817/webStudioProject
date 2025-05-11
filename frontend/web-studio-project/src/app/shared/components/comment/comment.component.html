@@ -82,8 +82,8 @@
       </div>
 
     }
-    @if (allCountComments > minCountComments) {
-      <div class="comment-more">
+    @if (allCountComments > minCountComments && allCountComments > 3) {
+      <div class="comment-more" (click)="addMoreComments()">
         <span>Загрузить ещё комментарии</span>
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path

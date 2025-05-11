@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {RouterLink} from '@angular/router';
-import { OrderService } from '../../services/order.service';
-import { MENU_ITEMS } from '../../../constants';
+import {OrderService} from '../../services/order.service';
+import {MENU_ITEMS} from '../../../constants';
 
 @Component({
   selector: 'app-footer',
@@ -14,11 +14,11 @@ import { MENU_ITEMS } from '../../../constants';
 })
 export class FooterComponent {
   protected footerMenuList = MENU_ITEMS;
-  protected isCall: boolean = false;
 
-  constructor(private orderService: OrderService){}
+  constructor(private orderService: OrderService) {
+  }
 
-  activePopup(){
+  protected activePopup() {
     this.orderService.openConsultationPopup();
 
   }

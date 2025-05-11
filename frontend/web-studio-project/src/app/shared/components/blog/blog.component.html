@@ -39,7 +39,7 @@
             </div>
             <div class="blog-sort-options">
               @for (category of categories; track $index) {
-                <div class="blog-sort-option" (click)="filer(category)"
+                <div class="blog-sort-option" (click)="filter(category)"
                      [class.active]="category.isChange">
                   <span>{{ category.name }}</span>
                   @if (category.isChange) {

@@ -1,4 +1,5 @@
 import {UserType} from './user.types';
+import {CommentActionTypes} from './comment-action.types';
 
 export interface CommentType {
   id: string;
@@ -8,9 +9,9 @@ export interface CommentType {
   dislikesCount: number;
   user: UserType;
   formattedDate?: string;
-   isViolate?: boolean;
-   isDislike?: boolean;
-   isLike?: boolean;
+  isViolate?: boolean;
+  isDislike?: boolean;
+  isLike?: boolean;
 
 }
 
@@ -25,5 +26,10 @@ export type CommentResponseType = {
 export type AddCommentRequestType = {
   text: string,
   article: string
+}
+
+export type CommentActionResponseType = {
+  comment: string,
+  action: CommentActionTypes
 }
 

@@ -1,11 +1,11 @@
 @use "../../../../assets/styles/_variables"as *;
 
 .footer {
-    background: $light-blue-color;
+  background: $light-blue-color;
+
   .container {
     padding-top: 40px;
     padding-bottom: 54px;
- 
 
 
     .footer-top {
@@ -93,9 +93,10 @@
 
           &.info-email {
             font-size: 14px;
-            a{
-                text-decoration: none;
-                color: $dark-blue-color;
+
+            a {
+              text-decoration: none;
+              color: $dark-blue-color;
             }
           }
 
@@ -117,9 +118,9 @@
           &.info-phone {
             cursor: pointer;
 
-            a{
-                text-decoration: none;
-                color: $dark-blue-color;
+            a {
+              text-decoration: none;
+              color: $dark-blue-color;
             }
 
             .button {
@@ -130,14 +131,14 @@
         }
 
 
-
       }
 
     }
-    .footer-right{
-        margin-top: 6px;
-        font-size: 16px;
-        color: $blue-color;
+
+    .footer-right {
+      margin-top: 6px;
+      font-size: 16px;
+      color: $blue-color;
     }
   }
 }
