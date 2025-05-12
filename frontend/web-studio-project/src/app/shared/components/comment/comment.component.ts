@@ -104,14 +104,13 @@ export class CommentComponent implements OnInit, OnChanges {
 
   private transformationDate(commentDate: string): string {
     const date = new Date(commentDate);
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const year = date.getFullYear();
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const day = String(date.getUTCDate()).padStart(2, '0');
+    const month = String(date.getUTCMonth() + 1).padStart(2, '0');
+    const year = date.getUTCFullYear();
+    const hours = String(date.getUTCHours()).padStart(2, '0');
+    const minutes = String(date.getUTCMinutes()).padStart(2, '0');
     return `${day}.${month}.${year} ${hours}:${minutes}`;
   }
-
   protected publishComment() {
     if (this.newCommentText && this.newCommentText.length > 10 && this.article.id) {
       this.commentService.addComment({text: this.newCommentText, article: this.article.id})
@@ -198,5 +197,69 @@ export class CommentComponent implements OnInit, OnChanges {
         this.snackBar.open('Жалоба отправлена');
         comment.isViolate = true;
       });
+  }
+
+  public get addViolateFn(): (comment: CommentType) => void {
+    return this.addViolate.bind(this);
+  }
+
+  public get addDislikeFn(): (comment: CommentType) => void {
+    return this.addDislike.bind(this);
+  }
+
+  public get addLikeFn(): (comment: CommentType) => void {
+    return this.addLike.bind(this);
+  }
+  public get publishCommentFn(): () => void {
+    return this.publishComment.bind(this);
+  }
+
+  public get getComments(): CommentType[] {
+    return this.comments;
+  }
+  public set setComments(value: CommentType[]) {
+    this.comments = value;
+  }
+  public get getIsLoggedIn(): boolean {
+    return this.isLoggedIn;
+  }
+  public get getAllCountComments(): number {
+    return this.allCountComments;
+  }
+  public set setAllCountComments(value: number) {
+    this.allCountComments = value;
+  }
+  public get getMinCountComments(): number {
+    return this.minCountComments;
+  }
+
+  public get getNewCommentText(): string {
+    return this.newCommentText;
+      }
+  public set setMinCountComments(value: number) {
+    this.minCountComments = value;
+  }
+  public set setNewCommentText(value: string) {
+    this.newCommentText = value;
+  }
+
+  public get getCommentUserActions(): CommentActionResponseType[] {
+    return this.commentUserActions;
+  }
+  public set setCommentUserActions(value: CommentActionResponseType[]) {
+    this.commentUserActions = value;
+  }
+  public get getStepCountComments(): number {
+    return this.stepCountComments;
+  }
+
+  public get getIsFirstRequest(): boolean {
+    return this.isFirstRequest;
+  }
+  public set setIsFirstRequest(value: boolean) {
+    this.isFirstRequest = value;
+  }
+  public set setStepCountComments(value: number) {
+    this.stepCountComments = value;
   }
 }
