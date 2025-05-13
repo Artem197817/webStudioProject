@@ -145,6 +145,9 @@ export class CommentComponent implements OnInit, OnChanges {
   }
 
   protected addLike(comment: CommentType) {
+    if(comment.isDislike){
+      comment.dislikesCount--;
+    }
     comment.isDislike = false;
     comment.isViolate = false;
     if (comment.isLike) {
@@ -165,6 +168,9 @@ export class CommentComponent implements OnInit, OnChanges {
   }
 
   protected addDislike(comment: CommentType) {
+    if(comment.isLike){
+      comment.likesCount--;
+    }
     comment.isLike = false;
     comment.isViolate = false;
     if (comment.isDislike) {
@@ -185,6 +191,12 @@ export class CommentComponent implements OnInit, OnChanges {
   }
 
   protected addViolate(comment: CommentType) {
+    if(comment.isDislike){
+      comment.dislikesCount--;
+    }
+    if(comment.isLike){
+      comment.likesCount--;
+    }
     if (comment.isViolate) {
       this.snackBar.open('Жалоба уже отправлена');
       return;
