@@ -47,7 +47,6 @@ describe('OrderService', () => {
 
         service.openConsultationPopup();
         service.thanksPopup();
-
         service.closePopup();
 
         expect(service.isPopupActiveSignal()).toBeFalse();

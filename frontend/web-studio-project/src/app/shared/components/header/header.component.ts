@@ -10,7 +10,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [
+  imports: [ 
     RouterLink,
     RouterModule
   ],
@@ -41,6 +41,11 @@ export class HeaderComponent implements OnInit {
     if (this.isLogged) {
       this.getUserInfo()
     }
+
+    this.headerMenuList.forEach(menuItem => {
+      menuItem.isActive = this.router.url.includes(menuItem.fragment);
+    })
+    
   }
 
 

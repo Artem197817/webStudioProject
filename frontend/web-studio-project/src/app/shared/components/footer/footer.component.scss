@@ -13,6 +13,14 @@
       align-items: center;
       margin-bottom: 40px;
 
+      .icon {
+        display: inline-block;
+        transition: transform 0.3s ease;
+      }
+
+      .icon:hover {
+        transform: scale(1.3);
+      }
 
       nav {
         margin-left: 40px;
@@ -36,7 +44,7 @@
               text-decoration: none;
 
               &:hover {
-                color: $blue-color;
+                color: rgb(0, 4, 255);
               }
             }
 
@@ -112,6 +120,7 @@
               &:last-child {
                 margin-right: 0;
               }
+
             }
           }
 
@@ -121,6 +130,10 @@
             a {
               text-decoration: none;
               color: $dark-blue-color;
+
+              &:hover{
+                color: rgb(25, 29, 255);
+              }
             }
 
             .button {

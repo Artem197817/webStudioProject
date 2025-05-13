@@ -163,4 +163,89 @@ export class BlogComponent implements OnInit {
       this.filter(findCategory);
     }
   }
+
+  public get getArticles(): ArticleType[] {
+    return this.articles;
+  }
+  public set setArticles(value: ArticleType[]) {
+    this.articles = value;
+  }
+
+  public get getPages(): number[] {
+    return this.pages;
+  }
+  public set setPages(value: number[]) {
+    this.pages = value;
+  }
+
+  public get getCategories(): CategoryType[] {
+    return this.categories;
+  }
+  public set setCategories(value: CategoryType[]) {
+    this.categories = value;
+  }
+
+  public get getActiveParams(): ActiveParamTypes {
+    return this.activeParams;
+  }
+  public set setActiveParams(value: ActiveParamTypes) {
+    this.activeParams = value;
+  }
+
+  public get getAppliedFilter(): { name: string; url: string }[] {
+    return this.appliedFilter;
+  }
+  public set setAppliedFilter(value: { name: string; url: string }[]) {
+    this.appliedFilter = value;
+  }
+
+  public get getIsSorting(): boolean {
+    return this.isSorting;
+  }
+  public set setIsSorting(value: boolean) {
+    this.isSorting = value;
+  }
+
+  // Геттеры и сеттеры для private свойств
+
+  public get getCount(): number {
+    return this.count;
+  }
+  public set setCount(value: number) {
+    this.count = value;
+  }
+
+  public get getPage(): number {
+    return this.page;
+  }
+  public set setPage(value: number) {
+    this.page = value;
+  }
+
+  public get getDestroy$(): Subject<void> {
+    return this.destroy$;
+  }
+  public set setDestroy$(value: Subject<void>) {
+    this.destroy$ = value;
+  }
+
+  public get openPageFn(): (page: number) => void {
+    return this.openPage.bind(this);
+  }
+  public get filterFn(): (category: CategoryType) => void {
+    return this.filter.bind(this);
+  }
+  public get openNextPageFn(): () => void {
+    return this.openNextPage.bind(this);
+  }
+  public get openPrevPageFn(): () => void {
+    return this.openPrevPage.bind(this);
+  }
+  public get deleteFilterOptionFn(): (url: string) => void {
+    return this.deleteFilterOption.bind(this);
+  }
+  public get changingIsSortingFn(): (event?: MouseEvent) => void {
+    return this.changingIsSorting.bind(this);
+  }
 }
+
